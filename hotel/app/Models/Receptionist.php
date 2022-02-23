@@ -9,7 +9,7 @@ class Receptionist extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name' , 'email' , 'password' , 'national_id'];
+    protected $fillable = ['name' , 'email' , 'password' , 'national_id' , 'avatar'];
 
     public function manager(){
 
@@ -21,6 +21,12 @@ class Receptionist extends Model
 
     public function user(){
 
-        return $this->hasMany(User::class , 'manager_id' , 'id');
+        return $this->hasMany(User::class , 'user_id' , 'id');
+    }
+
+
+    public function reservation(){
+
+        return $this->hasMany(Reservation::class , 'receptionist_id' , 'id');
     }
 }

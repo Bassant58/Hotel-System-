@@ -14,13 +14,13 @@ class CreateRoomsTable extends Migration
     public function up()
     {
         Schema::create('rooms', function (Blueprint $table) {
-            // $table->id();
-            $table->id()->random_int(1000, 9999)->unique();
+            $table->id();
+            $table->integer('room_code');
             $table->integer('capacity');
             $table->integer('price');
             $table->string('status')->default('available');
             $table->unsignedBigInteger('floor_id');
-            $table->foreign('floor_id')->references('id')->on('floors')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('floor_id')->references('id')->on('floors');
             $table->unsignedBigInteger('manager_id');
             $table->foreign('manager_id')->references('id')->on('managers')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

@@ -11,10 +11,6 @@ class Admin extends Model
 
     protected $fillable = ['name' , 'email' , 'password'];
 
-    /////// back again
-    public function manager(){
-        return $this->hasMany(Manager::class , 'manager_id' ,'id');
-    }
-
+    
 
 }

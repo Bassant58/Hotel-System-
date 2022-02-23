@@ -14,8 +14,8 @@ class CreateFloorsTable extends Migration
     public function up()
     {
         Schema::create('floors', function (Blueprint $table) {
-            $table->id()->random_int(1000, 9999)->unique();
-            // $table->increments('id')->random_int(1000, 9999)->unique();
+            $table->id();
+            $table->integer('floor_code');
             // $table->increments('floor_id')->rand(0 , 4)->unique();
             $table->string('name');
             $table->unsignedBigInteger('manager_id');

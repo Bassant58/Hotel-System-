@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Receptionist;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -15,6 +17,8 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        // $receptionist_id = Receptionist::select('id');
+        $receptionist_id = DB::table('receptionists')->pluck('id');
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
@@ -23,7 +27,8 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'avatar' => 'avatar.img' ,
             'gender' => $this->faker->randomElement(['Male', 'Female']),
-            'country' => 'Egypt'
+            'country' => 'Egypt' , 
+            'receptionist_id' => $this->faker->randomElement($receptionist_id),
             
         ];
     }

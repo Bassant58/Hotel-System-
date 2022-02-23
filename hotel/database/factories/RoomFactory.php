@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Floor;
 use App\Models\Manager;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\DB;
 
 class RoomFactory extends Factory
 {
@@ -15,14 +16,17 @@ class RoomFactory extends Factory
      */
     public function definition()
     {
+        $manager_id =  DB::table('managers')->pluck('id');
+        $floor_id =  DB::table('floors')->pluck('id');
+
+
         return [
 
             'capacity' => $this->faker->numberBetween(1, 6),
             'price' => $this->faker->numberBetween(100, 600),
-
-            //////// Need To Be Fixed ,,,,, I don't Know 
-            'manager_id' => Manager::factory(),
-            'floor_id' => Floor::factory(),
+            'manager_id' => $this->faker->randomElement($manager_id),
+            'floor_id' => $this->faker->randomElement($floor_id),
+            'room_code' => $this->faker->numberBetween(1, 6)
             
         ];
     }

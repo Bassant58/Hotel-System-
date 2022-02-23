@@ -10,7 +10,7 @@ class Manager extends Model
     use HasFactory;
 
 
-    protected $fillable = ['name' , 'email' , 'password' , 'national_id'];
+    protected $fillable = ['name' , 'email' , 'password' , 'national_id' , 'avatar'];
 
 
     public function receptionist(){

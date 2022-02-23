@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->enum('gender', ['Male', 'Female']);
             $table->string('status')->default('pending');
             $table->unsignedBigInteger('receptionist_id');
-            $table->foreign('receptionist_id')->references('id')->on('receptionists');
+            $table->foreign('receptionist_id')->references('id')->on('receptionists')->nullOnDelete();
             $table->rememberToken();
             $table->timestamps();
         });

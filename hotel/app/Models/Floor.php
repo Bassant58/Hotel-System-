@@ -9,11 +9,17 @@ class Floor extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name' , 'manager_id'];
 
 
     public function manager(){
 
         return $this->belongsTo(Manager::class , 'manager_id' , 'id');
+    }
+
+
+    public function room(){
+
+        return $this->hasMany(Room::class , 'floor_id' , 'id');
     }
 }

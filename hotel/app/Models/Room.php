@@ -18,4 +18,10 @@ class Room extends Model
         return $this->belongsTo(Manager::class , 'manager_id' , 'id');
     }
 
+
+    public function floor(){
+
+        return $this->belongsTo(Floor::class , 'floor_id' , 'id');
+    }
+
 }
