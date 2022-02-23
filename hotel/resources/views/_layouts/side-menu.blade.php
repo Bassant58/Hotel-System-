@@ -35,7 +35,7 @@
             <a href="#" class="nav-link">
                 <i class="nav-icon fad fa-arrow-circle-right"></i>
               <p>
-                Categories
+                
               </p>
             </a>
           </li>
@@ -43,7 +43,7 @@
             <a href="#" class="nav-link">
                 <i class="nav-icon fad fa-arrow-circle-right"></i>
               <p>
-                Meals
+                
               </p>
             </a>
           </li>
@@ -61,7 +61,7 @@
                 <a href="#" class="nav-link">
                     <i class="nav-icon fad fa-arrow-circle-right"></i>
                     <p>
-                        Tables
+                        
                     </p>
                 </a>
             </li>
@@ -70,7 +70,7 @@
                 <a href="#" class="nav-link">
                     <i class="nav-icon fad fa-arrow-circle-right"></i>
                     <p>
-                        Reservations
+                        
                     </p>
                 </a>
             </li>
