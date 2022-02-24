@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MangerController;
 use App\Http\Controllers\ReceptionestController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
+
 
 
 // use Spatie\Permission\Models\Role;
@@ -29,6 +31,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+Route::get('/main', function(){
+    return view('main');
+});
 
 
 //LOg in
@@ -39,6 +44,7 @@ Route::get('/guest-login', [LoginController::class,'guest']);
 
 
 //Manager
+Route::get('/data-manger', [MangerController::class,'getManagerData'])->name('ManagerData');
 Route::get('/mang-manger', [MangerController::class,'manage']);
 
 Route::get('/add-manager', [MangerController::class,'add']);
@@ -51,6 +57,7 @@ Route::get('/edit-manager/{id}', [MangerController::class,'update']);
 Route::post('/save-manager', [MangerController::class,'save']);
 
 //Receptionist
+Route::get('/data-receptionest', [ReceptionestController::class,'getReceptionestData'])->name('ReceptionestData');
 Route::get('/mang-receptionest', [ReceptionestController::class,'manage']);
 
 Route::get('/add-receptionest', [ReceptionestController::class,'add']);
@@ -63,4 +70,6 @@ Route::get('/del-receptionest/{id}', [ReceptionestController::class,'delete']);
 Route::get('/show-receptionest/{id}', [ReceptionestController::class,'show']);
 
 //user
+Route::get('/data-user', [UserController::class,'getUserData'])->name('UserData');
 Route::get('/mang-user', [UserController::class,'manage']);
+Route::get('/accept/{id}', [UserController::class,'accept']);

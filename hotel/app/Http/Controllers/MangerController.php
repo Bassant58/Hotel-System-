@@ -5,19 +5,34 @@ use App\Models\Manager;
 use Illuminate\Http\Request;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Auth\Events\Registered;
+use App\DataTables\ManagerDataTable;
+use DataTables;
 
 
 class MangerController extends Controller
 {
-   public function manage(){
-       $mangers=Manager::get();
-       return view('manager.manage',[
-           'mangers'=>$mangers
-       ]);
+   public function manage(ManagerDataTable $dataTable){
+    return view('manager.manage');
    }
+
+   public function getManagerData(){
+   $data =Manager::all();
+   return Datatables::of($data)
+       ->addColumn('action', function ($row) {
+           $actionBtn = "<a  class='btn btn-primary'  href='/edit-manager/$row->id'>Edit</a>
+                         <a  class='btn btn-success'  href='/show-manager/$row->id'>Show</a> 
+                         <a  class='btn btn-danger'  href='/del-manager/$row->id'>Delete</a> 
+                      "  ;
+           return $actionBtn;
+       })->rawColumns(['action'])
+       ->make(true);
+    }
+
+    
    public function add(){
        return view('manager.add-update');
    }
+   
    public function store(){
        $attripute=Request()->validate([
         'name' => 'required|min:6|max:16',

@@ -1,17 +1,28 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\DataTables\UserDataTable;
+use DataTables;
 
 class UserController extends Controller
 {
-    public function manage(){
-        $guests=User::get();
-        return view('user.manage',[
-            'guests'=>$guests
-        ]);
+   
+    public function manage(UserDataTable $dataTable){
+        return view('guest.manage');
     }
+
+    public function getUserData(){
+        $data =User::all();
+        return Datatables::of($data)
+            ->addColumn('action', function ($row) {
+                $actionBtn = "<a  class='btn btn-primary'  href='/accept/$row->id'>Accept</a>"; 
+                return $actionBtn;
+
+            })->rawColumns(['action'])
+            ->make(true);
+         }
 
      public function delete($id){
          User::find($id)->delete(); 
@@ -37,4 +48,13 @@ class UserController extends Controller
          $user->save();
          return redirect('/mang-manger');
      }
+
+    public function accept($id){
+        $user=User::find($id); 
+        $user->status='accept';
+        $user->receptionist_id=auth()->user()->id;
+        $user->save();
+        return redirect('/mang-user');
+
+    }
 }
