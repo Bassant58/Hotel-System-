@@ -1,4 +1,3 @@
-{{-- @extends('_layouts.master') --}}
+ @extends('_layouts.master')
 
 
-<x-ww/>

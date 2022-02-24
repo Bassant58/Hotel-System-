@@ -29,7 +29,6 @@ class ManagerFactory extends Factory
             'email' => $this->faker->email(),
             'password' => Hash::make('123456'),
             'national_id' => $this->faker->numerify('##############'),
-            'avatar' => 'avatar.png',
 
 
         ];

@@ -19,7 +19,6 @@ class CreateManagersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->bigInteger('national_id')->unique();
-            $table->string('avatar');
             $table->timestamps();
         });
     }

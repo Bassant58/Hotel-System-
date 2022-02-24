@@ -40,6 +40,18 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        'manager' => [
+            'driver' => 'session',
+            'provider' => 'managers',
+        ],
+        'receptionist' => [
+            'driver' => 'session',
+            'provider' => 'receptionists',
+        ],
     ],
 
     /*
@@ -64,11 +76,23 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+        'managers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Manager::class,
+        ],
+        'receptionists' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Receptionist::class,
+        ],
+//
+//         'users' => [
+//             'driver' => 'database',
+//             'table' => 'users',
+//         ],
     ],
 
     /*
