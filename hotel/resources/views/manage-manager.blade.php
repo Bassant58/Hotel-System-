@@ -1,8 +1,6 @@
 @extends('_layouts.master')
 
 @section('content')
-<x-managers.manager/>
+<x-manager/>
 @endsection
 
-
-{{-- <x-ww/> --}}

@@ -35,7 +35,6 @@
             <a href="#" class="nav-link">
                 <i class="nav-icon fad fa-arrow-circle-right"></i>
               <p>
-                
               </p>
             </a>
           </li>
@@ -43,7 +42,6 @@
             <a href="#" class="nav-link">
                 <i class="nav-icon fad fa-arrow-circle-right"></i>
               <p>
-                
               </p>
             </a>
           </li>
@@ -52,7 +50,6 @@
                 <a href="#" class="nav-link">
                     <i class="nav-icon fad fa-arrow-circle-right"></i>
                     <p>
-                        Orders
                     </p>
                 </a>
             </li>
@@ -61,7 +58,6 @@
                 <a href="#" class="nav-link">
                     <i class="nav-icon fad fa-arrow-circle-right"></i>
                     <p>
-                        
                     </p>
                 </a>
             </li>
@@ -70,7 +66,6 @@
                 <a href="#" class="nav-link">
                     <i class="nav-icon fad fa-arrow-circle-right"></i>
                     <p>
-                        
                     </p>
                 </a>
             </li>
