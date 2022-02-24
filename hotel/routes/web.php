@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\RoomController;
+use App\Models\Manager;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+    // return "hello";
 });
 
 Route::get('/dashboard', function () {
@@ -22,3 +24,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+Route::get('/room',[RoomController::class,'index']);
+Route::get('/manager',[RoomController::class,'manager']);
+Route::get('/manager/hh',[RoomController::class,'getRoomsManagerView'])->name('room');
+// Route::get('/user-data', function() {
+//     $model = Manager::query();
+//     return DataTables::eloquent($model)
+//                 ->addColumn('room', '<button>hhh</button>')
+//                 ->toJson();
+// });
