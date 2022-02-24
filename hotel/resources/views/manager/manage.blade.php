@@ -1,5 +1,5 @@
  @extends('_layouts.master') 
  @section('content')
- hello
+ <x-hotel.MangerComponent :mangers="$mangers"/>
  @endsection
 
