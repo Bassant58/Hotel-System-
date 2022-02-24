@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MangerController;
 use App\Http\Controllers\ReceptionestController;
+use App\Http\Controllers\LoginController;
+
 
 // use Spatie\Permission\Models\Role;
 
@@ -28,6 +30,14 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+
+//LOg in
+Route::get('/admin-login', [LoginController::class,'admin']);
+Route::get('/manager-login', [LoginController::class,'manager']);
+Route::get('/receptionest-login', [LoginController::class,'receptionest']);
+Route::get('/guest-login', [LoginController::class,'guest']);
+
+
 //Manager
 Route::get('/mang-manger', [MangerController::class,'manage']);
 
@@ -51,3 +61,6 @@ Route::post('/save-receptionest', [ReceptionestController::class,'save']);
 
 Route::get('/del-receptionest/{id}', [ReceptionestController::class,'delete']);
 Route::get('/show-receptionest/{id}', [ReceptionestController::class,'show']);
+
+//user
+Route::get('/mang-user', [UserController::class,'manage']);
