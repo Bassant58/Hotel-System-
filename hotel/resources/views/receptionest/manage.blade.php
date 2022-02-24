@@ -6,8 +6,9 @@
     <table class="table table-bordered yajra-datatable" id="user">
         <thead>
             <tr>
-                <th>Email</th>
                 <th>Username</th>
+                <th>Email</th>
+                <th>status</th>
                 <th>Manager Id</th>
                 <th>Action</th>
             </tr>
@@ -15,6 +16,13 @@
         <tbody>
         </tbody>
     </table>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            <a href='/add-receptionest' class='btn btn-success'>Add New Receptionest</a>
+        </div>
     </div>
 </div>
 @endsection
@@ -34,6 +42,10 @@ $(document).ready(function() {
            {
                data: 'email',
                name: 'email'
+           },
+           {
+               data: 'Ban_unBan',
+               name: 'Ban_unBan'
            },
            {
                data: 'manager_id',

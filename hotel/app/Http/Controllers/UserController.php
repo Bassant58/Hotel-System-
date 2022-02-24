@@ -22,7 +22,7 @@ class UserController extends Controller
 
             })->rawColumns(['action'])
             ->make(true);
-         }
+    }
 
      public function delete($id){
          User::find($id)->delete(); 
@@ -34,21 +34,6 @@ class UserController extends Controller
          return view('');
  
      }
-     public function update($id){
-         $user=User::find($id); 
-         return view('user.update',[
-             'user'=>$user
-         ]);
- 
-     }
-     public function save(){
-         $user=User::find(Request()->id); 
-         $user->status=Request()->status;
-         $user->receptionist_id=Request()->receptionist_id;
-         $user->save();
-         return redirect('/mang-manger');
-     }
-
     public function accept($id){
         $user=User::find($id); 
         $user->status='accept';

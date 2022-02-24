@@ -46,9 +46,16 @@ class MangerController extends Controller
        $manager->assignRole('manager');
        return redirect('/mang-manger');
     }
-
+// lazm on delete set
     public function delete($id){
-        Manager::find($id)->delete(); 
+       $manager= Manager::find($id); 
+
+        if($manager->receptionist){
+            // return '<script type="text/javascript">alert("hello!");</script>';
+            $manager->receptionist->manager_id=null;
+            $manager->receptionist->save();
+        }
+        $manager->delete(); 
         return redirect('/mang-manger');
 
     }

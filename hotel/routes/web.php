@@ -5,6 +5,10 @@ use App\Http\Controllers\MangerController;
 use App\Http\Controllers\ReceptionestController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserReservationController;
+use App\Http\Controllers\FloorController;
+
+
 
 
 
@@ -69,7 +73,24 @@ Route::post('/save-receptionest', [ReceptionestController::class,'save']);
 Route::get('/del-receptionest/{id}', [ReceptionestController::class,'delete']);
 Route::get('/show-receptionest/{id}', [ReceptionestController::class,'show']);
 
+Route::get('/ban-receptionest/{id}', [ReceptionestController::class,'ban']);
+
+
 //user
 Route::get('/data-user', [UserController::class,'getUserData'])->name('UserData');
 Route::get('/mang-user', [UserController::class,'manage']);
 Route::get('/accept/{id}', [UserController::class,'accept']);
+
+//Room
+Route::get('/show-rooms', [UserReservationController::class,'getRooms'])->name('room.all');
+Route::get('reservations/rooms/{roomId}', [UserReservationController::class,'showOneRoom'])->name('room.oneRoom');
+Route::post('reservations/rooms/check/{roomId}', 
+[UserReservationController::class,'checkNumberWithRoomCapacity'])->name('room.check');
+
+//Floor
+Route::get('/data-floor', [FloorController::class,'getFloorData'])->name('FloorData');
+Route::get('/mang-floor', [FloorController::class,'manage']);
+
+Route::get('/add-floor', [FloorController::class,'add']);
+Route::post('/store-floor', [FloorController::class,'store']);
+

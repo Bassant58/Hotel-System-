@@ -21,7 +21,8 @@ class ReceptionestController extends Controller
             ->addColumn('action', function ($row) {
                 $actionBtn = "<a  class='btn btn-primary'  href='/edit-receptionest/$row->id'>Edit</a>
                               <a  class='btn btn-success'  href='/show-receptionest/$row->id'>Show</a> 
-                              <a  class='btn btn-danger'  href='/del-receptionest/$row->id'>Delete</a>"; 
+                              <a  class='btn btn-danger'  href='/del-receptionest/$row->id'>Delete</a>
+                              <a  class='btn btn-secondary'  href='/ban-receptionest/$row->id'>Ban</a>"; 
                            
                 return $actionBtn;
             })->rawColumns(['action'])
@@ -66,5 +67,16 @@ class ReceptionestController extends Controller
          $receptionist->email=Request()->email;
          $receptionist->save();
          return redirect('/mang-receptionest');
+    }
+    public function ban($id){
+        $receptionist=Receptionist::find($id);
+        if( $receptionist->Ban_unBan=='Baned'){
+            $receptionist->Ban_unBan='unBaned';
+        }
+        else{
+            $receptionist->Ban_unBan='Baned';
+        }
+        $receptionist->save();
+        return redirect('/mang-receptionest');
     }
 }

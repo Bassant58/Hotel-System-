@@ -6,8 +6,9 @@
      <table class="table table-bordered yajra-datatable" id="user">
          <thead>
              <tr>
-                 <th>Email</th>
-                 <th>Username</th>
+                 <th>Name</th>
+                 <th>Floor_Code</th>
+                 <th>Manager_Id</th>
                  <th>Action</th>
              </tr>
          </thead>
@@ -19,7 +20,7 @@
  <div class="container">
     <div class="row">
         <div class="col-2">
-            <a href='/add-manager' class='btn btn-success'>Add New Manger</a>
+            <a href='/add-floor' class='btn btn-success'>Add New Floor</a>
         </div>
     </div>
 </div>
@@ -28,7 +29,7 @@
  <script type="text/javascript">
 $(document).ready(function() {
     var dataTable = $('#user').DataTable({
-        ajax: '{{route('ManagerData')}}',
+        ajax: '{{route('FloorData')}}',
         "order": [
             [0, "desc"]
         ],
@@ -38,8 +39,12 @@ $(document).ready(function() {
                 name: 'name'
             },
             {
-                data: 'email',
-                name: 'email'
+                data: 'floor_code',
+                name: 'floor_code'
+            },
+            {
+                data: 'manager_id',
+                name: 'manager_id',
             },
             {
                 data: 'action',
