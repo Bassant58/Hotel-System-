@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -9,7 +10,7 @@ class ManagerAuthController extends Controller
 {
     public function create()
     {
-        return view('auth.ManagerLogin'); // Login View Of Manager
+        return view('manager.login'); // Login View Of Manager
     }
     public function login(Request $request)
     {
@@ -18,7 +19,8 @@ class ManagerAuthController extends Controller
             'password' => 'required|min:6'
         ]);
         if (Auth::guard('manager')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->intended(route('manager.dashboard'));
+//            return redirect()->intended(route('manager.dashboard'));
+            return redirect()->intended(RouteServiceProvider::HOME);
         } else {
             return redirect()->back();
         }
@@ -31,6 +33,6 @@ class ManagerAuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('manager.login'); // Route Manager Login
+        return redirect()->route('manager.login.blade'); // Route Manager Login
     }
 }

@@ -10,9 +10,8 @@ use Spatie\Permission\Traits\HasRoles;
 class Receptionist extends Authenticatable
 {
     use HasFactory,HasRoles;
-    protected $guard_name = 'web';
 
-    protected $fillable = ['name' , 'email' , 'password' , 'national_id' , 'avatar','manager_id'];
+    protected $fillable = ['name' , 'email' , 'password' , 'national_id' , 'manager_id'];
 
     public function manager(){
 

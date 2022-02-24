@@ -27,20 +27,20 @@
         <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="/admin-login">LOg in As Admin</a>
+                    <a class="nav-link active" href="{{route('admin.login.blade')}}">Admin :: Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/manager-login">LOg in As Manager</a>
+                    <a class="nav-link" href="{{route('manager.login.blade')}}">Manager :: Login </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/receptionest-login">LOg in As Receptionest</a>
+                    <a class="nav-link" href="{{route('receptionist.login.blade')}}"> Receptionist :: Login </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/guest-login">LOg in As Guest</a>
+                    <a class="nav-link" href="{{route('login')}}">Guest :: Login</a>
                 </li>
             </ul>
             <div class="nav-item">
-                <a class="nav-link" href="/register">RegisterNow</a>
+                <a class="nav-link" href="{{route('register')}}">Guest :: RegisterNow </a>
             </div>
 
         </div>

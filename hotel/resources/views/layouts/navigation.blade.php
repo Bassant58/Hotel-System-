@@ -23,7 +23,15 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                            <div>{{ Auth::user()->name }}</div>
+                            @if(Auth::guard('admin')->check())
+                                <div>{{ Auth::guard('admin')->user()->name }}</div>
+                            @elseif(Auth::guard('manager')->check())
+                                <div>{{ Auth::guard('manager')->user()->name }}</div>
+                            @elseif(Auth::guard('receptionist')->check())
+                                <div>{{ Auth::guard('receptionist')->user()->name }}</div>
+                            @elseif(Auth::guard('web')->check())
+                                <div>{{ Auth::guard('web')->user()->name }}</div>
+                            @endif
 
                             <div class="ml-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -35,6 +43,7 @@
 
                     <x-slot name="content">
                         <!-- Authentication -->
+                        @if(Auth::guard('web')->check())
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
@@ -44,6 +53,37 @@
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
+                        @elseif(Auth::guard('admin')->check())
+                            <form method="POST" action="{{ route('admin.logout') }}">
+                                @csrf
+
+                                <x-dropdown-link :href="route('admin.logout')"
+                                                 onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
+                        @elseif(Auth::guard('manager')->check())
+                            <form method="POST" action="{{ route('manager.logout') }}">
+                                @csrf
+
+                                <x-dropdown-link :href="route('manager.logout')"
+                                                 onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
+                        @elseif(Auth::guard('receptionist')->check())
+                            <form method="POST" action="{{ route('receptionist.logout') }}">
+                                @csrf
+
+                                <x-dropdown-link :href="route('receptionist.logout')"
+                                                 onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
+                        @endif
                     </x-slot>
                 </x-dropdown>
             </div>
@@ -71,21 +111,60 @@
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                @if(Auth::guard('admin')->check())
+                     <div class="font-medium text-base text-gray-800">{{ Auth::guard('admin')->user()->name }}</div>
+                     <div class="font-medium text-sm text-gray-500">{{ Auth::guard('admin')->user()->email }}</div>
+                @elseif(Auth::guard('manager')->check())
+                    <div class="font-medium text-base text-gray-800">{{ Auth::guard('manager')->user()->name }}</div>
+                    <div class="font-medium text-sm text-gray-500">{{ Auth::guard('manager')->user()->email }}</div>
+                @elseif(Auth::guard('receptionist')->check())
+                    <div class="font-medium text-base text-gray-800">{{ Auth::guard('receptionist')->user()->name }}</div>
+                    <div class="font-medium text-sm text-gray-500">{{ Auth::guard('receptionist')->user()->email }}</div>
+                @elseif(Auth::guard('web')->check())
+                    <div class="font-medium text-base text-gray-800">{{ Auth::guard('web')->user()->name }}</div>
+                    <div class="font-medium text-sm text-gray-500">{{ Auth::guard('web')->user()->email }}</div>
+                @endif
             </div>
 
             <div class="mt-3 space-y-1">
                 <!-- Authentication -->
+                @if(Auth::guard('web')->check())
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>
+                @elseif(Auth::guard('admin')->check())
+                    <form method="POST" action="{{ route('admin.logout') }}">
+                        @csrf
+                        <x-responsive-nav-link :href="route('admin.logout')"
+                                               onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-responsive-nav-link>
+                    </form>
+                @elseif(Auth::guard('manager')->check())
+                    <form method="POST" action="{{ route('manager.logout') }}">
+                        @csrf
+                        <x-responsive-nav-link :href="route('manager.logout')"
+                                               onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-responsive-nav-link>
+                    </form>
+                @elseif(Auth::guard('receptionist')->check())
+                    <form method="POST" action="{{ route('receptionist.logout') }}">
+                        @csrf
+                        <x-responsive-nav-link :href="route('receptionist.logout')"
+                                               onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-responsive-nav-link>
+                    </form>
+                @endif
             </div>
         </div>
     </div>

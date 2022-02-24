@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\ManagerAuthController;
+use App\Http\Controllers\ReceptionistAuthController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MangerController;
 use App\Http\Controllers\ReceptionestController;
@@ -26,17 +30,30 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->name('dashboard');
 
-require __DIR__.'/auth.php';
+//->middleware(['auth'])
+
+//Login blades :::
+Route::get('/admin-login', [AdminAuthController::class,'create'])->name('admin.login.blade');
+Route::get('/manager-login', [ManagerAuthController::class,'create'])->name('manager.login.blade');
+Route::get('/receptionist-login', [ReceptionistAuthController::class,'create'])->name('receptionist.login.blade');
+//Route::get('/guest-login', [LoginController::class,'guest'])->name('guest.login.blade');
+
+Route::post('/admin', [AdminAuthController::class,'login'])->name('admin.login');
+Route::post('/manager', [ManagerAuthController::class,'login'])->name('manager.login');
+Route::post('/receptionist', [ReceptionistAuthController::class,'login'])->name('receptionist.login');
+
+//Logout Action For Each User:Guard
+Route::post('/admin-logout', [AdminAuthController::class,'logout'])->name('admin.logout');
+Route::post('/manager-logout', [ManagerAuthController::class,'logout'])->name('manager.logout');
+Route::post('/receptionist-logout', [ReceptionistAuthController::class,'logout'])->name('receptionist.logout');
 
 
-//LOg in
-Route::get('/admin-login', [LoginController::class,'admin']);
-Route::get('/manager-login', [LoginController::class,'manager']);
-Route::get('/receptionest-login', [LoginController::class,'receptionest']);
-Route::get('/guest-login', [LoginController::class,'guest']);
-
+//Route::get('/All-dashboard' , function (){
+//    return view('dashboard');
+//    return 'Mayteen Om Hossam';
+//})->name('dashboard');
 
 //Manager
 Route::get('/mang-manger', [MangerController::class,'manage']);
@@ -64,3 +81,5 @@ Route::get('/show-receptionest/{id}', [ReceptionestController::class,'show']);
 
 //user
 Route::get('/mang-user', [UserController::class,'manage']);
+
+require __DIR__.'/auth.php';

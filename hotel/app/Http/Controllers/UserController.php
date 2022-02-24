@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,24 +15,24 @@ class UserController extends Controller
     }
 
      public function delete($id){
-         User::find($id)->delete(); 
+         User::find($id)->delete();
          return redirect('/mang-user');
- 
+
      }
      public function display($id){
-         $user=User::find($id); 
+         $user=User::find($id);
          return view('');
- 
+
      }
      public function update($id){
-         $user=User::find($id); 
+         $user=User::find($id);
          return view('user.update',[
              'user'=>$user
          ]);
- 
+
      }
      public function save(){
-         $user=User::find(Request()->id); 
+         $user=User::find(Request()->id);
          $user->status=Request()->status;
          $user->receptionist_id=Request()->receptionist_id;
          $user->save();
