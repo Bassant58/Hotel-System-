@@ -45,4 +45,12 @@ class UserReservationController extends Controller
         ->get();
         return view('GuestViews.showReservations' , compact('user'));
     }
+
+
+    public function index(){
+        return view('stripe');
+    }
+    public function paymentWithStripe(Request $request){
+        return $request->all();
+    }
 }

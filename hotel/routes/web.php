@@ -94,6 +94,10 @@ Route::get('/mang-floor', [FloorController::class,'manage']);
 Route::get('/add-floor', [FloorController::class,'add']);
 Route::post('/store-floor', [FloorController::class,'store']);
 
+//STRIPE
+Route::get('payment', [UserReservationController::class,'index']);
+Route::post('stripe', [UserReservationController::class,'paymentWithStripe'])->name('stripe');
+
 
 
 
