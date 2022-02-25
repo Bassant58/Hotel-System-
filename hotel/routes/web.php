@@ -84,11 +84,16 @@ Route::get('reservations/rooms/{roomId}', [UserReservationController::class,'sho
 Route::post('reservations/rooms/check/{roomId}', 
 [UserReservationController::class,'checkNumberWithRoomCapacity'])->name('room.check');
 
+//show reservation 
+Route::get('reservations/{user_id}', [UserReservationController::class,'getAllReservations'])->name('user.reservation');
+
 //Floor
 Route::get('/data-floor', [FloorController::class,'getFloorData'])->name('FloorData');
 Route::get('/mang-floor', [FloorController::class,'manage']);
 
 Route::get('/add-floor', [FloorController::class,'add']);
 Route::post('/store-floor', [FloorController::class,'store']);
+
+
 
 
