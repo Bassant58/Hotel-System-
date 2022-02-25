@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\Manager;
+use App\Models\User;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ManagerDataTable extends DataTable
+class UserDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,16 +21,16 @@ class ManagerDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'manager.action');
+            ->addColumn('action', 'user.action');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Manager $model
+     * @param \App\Models\User $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Manager $model)
+    public function query(User $model)
     {
         return $model->newQuery();
     }
@@ -43,18 +43,18 @@ class ManagerDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('manager-table')
+                    ->setTableId('user-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    // ->dom('Bfrtip')
-                    ->orderBy(1);
-                    // ->buttons(
-                    //     Button::make('create'),
-                    //     Button::make('export'),
-                    //     Button::make('print'),
-                    //     Button::make('reset'),
-                    //     Button::make('reload')
-                    // );
+                    ->dom('Bfrtip')
+                    ->orderBy(1)
+                    ->buttons(
+                        Button::make('create'),
+                        Button::make('export'),
+                        Button::make('print'),
+                        Button::make('reset'),
+                        Button::make('reload')
+                    );
     }
 
     /**
@@ -65,10 +65,10 @@ class ManagerDataTable extends DataTable
     protected function getColumns()
     {
         return [
-
-          'name',
-          'email'
-        ];
+            'name',
+            'status',
+            'receptionist_id'
+          ];
     }
 
     /**
@@ -78,7 +78,6 @@ class ManagerDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Manager_' . date('YmdHis');
+        return 'User_' . date('YmdHis');
     }
-
 }

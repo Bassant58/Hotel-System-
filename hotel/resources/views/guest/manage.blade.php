@@ -7,9 +7,8 @@
         <thead>
             <tr>
                 <th>Username</th>
-                <th>Email</th>
                 <th>status</th>
-                <th>Manager Id</th>
+                <th>Receptionist Id</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -18,19 +17,12 @@
     </table>
     </div>
 </div>
-<div class="container">
-    <div class="row">
-        <div class="col-2">
-            <a href='/add-receptionest' class='btn btn-success'>Add New Receptionest</a>
-        </div>
-    </div>
-</div>
 @endsection
 @section('custom-scripts')
 <script type="text/javascript">
 $(document).ready(function() {
    var dataTable = $('#user').DataTable({
-       ajax: '{{route('ReceptionestData')}}',
+       ajax: '{{route('UserData')}}',
        "order": [
            [0, "desc"]
        ],
@@ -40,16 +32,13 @@ $(document).ready(function() {
                name: 'name'
            },
            {
-               data: 'email',
-               name: 'email'
+               data: 'status',
+               name: 'status'
            },
            {
-               data: 'Ban_unBan',
-               name: 'Ban_unBan'
-           },
-           {
-               data: 'manager_id',
-               name: 'manager_id'
+               data: 'receptionist_id',
+               name: 'receptionist_id',
+
            },
            {
                data: 'action',

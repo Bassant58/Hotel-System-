@@ -4,17 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Receptionist;
+use App\DataTables\ReceptionistDataTable;
+use DataTables;
 class ReceptionestController extends Controller
 {
-    public function manage(){
-        $receptionests=Receptionist::get();
-        return view('receptionest.manage',[
-            'receptionests'=>$receptionests
-        ]);
+    public function manage(ReceptionistDataTable $dataTable){
+        return view('receptionest.manage');
     }
     public function add(){
         return view('receptionest.add-update');
     }
+
+    public function getReceptionestData(){
+        $data =Receptionist::all();
+        return Datatables::of($data)
+            ->addColumn('action', function ($row) {
+                $actionBtn = "<a  class='btn btn-primary'  href='/edit-receptionest/$row->id'>Edit</a>
+                              <a  class='btn btn-success'  href='/show-receptionest/$row->id'>Show</a> 
+                              <a  class='btn btn-danger'  href='/del-receptionest/$row->id'>Delete</a>
+                              <a  class='btn btn-secondary'  href='/ban-receptionest/$row->id'>Ban</a>"; 
+                           
+                return $actionBtn;
+            })->rawColumns(['action'])
+            ->make(true);
+         }
+     
     public function store(){
         $attripute=Request()->validate([
          'name' => 'required|min:6|max:16',
@@ -53,5 +67,16 @@ class ReceptionestController extends Controller
          $receptionist->email=Request()->email;
          $receptionist->save();
          return redirect('/mang-receptionest');
+    }
+    public function ban($id){
+        $receptionist=Receptionist::find($id);
+        if( $receptionist->Ban_unBan=='Baned'){
+            $receptionist->Ban_unBan='unBaned';
+        }
+        else{
+            $receptionist->Ban_unBan='Baned';
+        }
+        $receptionist->save();
+        return redirect('/mang-receptionest');
     }
 }

@@ -44,7 +44,9 @@
                     name="password_confirmation" required />
             </div>
             <div class="mt-4 ">
-                <select name="country" class=" block mt-1 w-full">
+                <x-label for="Country" :value="__('Country')" />
+                <select style="border-radius: 7px;
+                 border: 1px lightgrey solid;cursor:pointer" name="country" class=" block mt-1 w-full">
                     <option value="Egypt">Egypt</option>
                     <option value="Unitade state">Unitade state</option>
                     <option value="Australia">Australia</option>
@@ -52,7 +54,7 @@
                 </select>
             </div>
             <!-- try only -->
-            <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="receptionist_id"
+            <x-input id="password_confirmation" class="block mt-1 w-full" type="hidden" name="receptionist_id"
                 value='1' />
             <div class=" flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">

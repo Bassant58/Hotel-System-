@@ -51,10 +51,10 @@
                 </li>
                 </li>
                 <li class="nav-item">
-                    <a href="/mang-room" class="nav-link">
+                    <a href="/mang-user" class="nav-link">
                         <i class="nav-icon fad fa-arrow-circle-right"></i>
                         <p>
-                            Manage rooms
+                        Manage Users
                         </p>
                     </a>
                 </li>
@@ -70,10 +70,10 @@
                 </li>
                 </li>
                 <li class="nav-item">
-                    <a href="/mang-user" class="nav-link">
+                    <a href="/show-rooms" class="nav-link">
                         <i class="nav-icon fad fa-arrow-circle-right"></i>
                         <p>
-                            Manage Users
+                            Manage rooms
 
                         </p>
                     </a>
