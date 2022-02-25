@@ -3782,18 +3782,43 @@
                 "league/flysystem-aws-s3-v3": "Required to use AWS S3 file storage",
                 "php-ffmpeg/php-ffmpeg": "Required for generating video thumbnails",
                 "spatie/pdf-to-image": "Required for generating thumbsnails of PDFs and SVGs"
+            "name": "rinvex/countries",
+            "version": "v8.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rinvex/countries.git",
+                "reference": "947031400fecc1c9f2f639d86e2113ee6cb09c37"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rinvex/countries/zipball/947031400fecc1c9f2f639d86e2113ee6cb09c37",
+                "reference": "947031400fecc1c9f2f639d86e2113ee6cb09c37",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0.0"
+            },
+            "require-dev": {
+                "codedungeon/phpunit-result-printer": "^0.31.0",
+                "phpunit/phpunit": "^9.5.0"
             },
             "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
                         "Spatie\\MediaLibrary\\MediaLibraryServiceProvider"
+                        "Rinvex\\Country\\Providers\\CountryServiceProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
                     "Spatie\\MediaLibrary\\": "src"
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Rinvex\\Country\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3835,6 +3860,45 @@
                 }
             ],
             "time": "2022-02-23T07:59:12+00:00"
+                    "name": "Rinvex LLC",
+                    "email": "help@rinvex.com",
+                    "homepage": "https://rinvex.com"
+                },
+                {
+                    "name": "Abdelrahman Omran",
+                    "email": "me@omranic.com",
+                    "homepage": "https://omranic.com",
+                    "role": "Project Lead"
+                },
+                {
+                    "name": "The Generous PHP Community",
+                    "homepage": "https://github.com/rinvex/countries/contributors"
+                }
+            ],
+            "description": "Rinvex Countries is a simple and lightweight package for retrieving country details with flexibility. A whole bunch of data including name, demonym, capital, iso codes, dialling codes, geo data, currencies, flags, emoji, and other attributes for all 250 countries worldwide at your fingertips.",
+            "homepage": "https://rinvex.com",
+            "keywords": [
+                "Flexible",
+                "Simple",
+                "countries",
+                "country",
+                "currencies",
+                "demonym",
+                "dialling",
+                "emoji",
+                "flags",
+                "geographic",
+                "languages",
+                "rinvex",
+                "svg"
+            ],
+            "support": {
+                "docs": "https://github.com/rinvex/countries/blob/master/README.md",
+                "email": "help@rinvex.com",
+                "issues": "https://github.com/rinvex/countries/issues",
+                "source": "https://github.com/rinvex/countries"
+            },
+            "time": "2021-10-05T08:02:55+00:00"
         },
         {
             "name": "spatie/laravel-permission",

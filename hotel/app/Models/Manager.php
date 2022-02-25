@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 
 class Manager extends Authenticatable
 {
     use HasFactory,HasRoles;
-
-    protected $fillable = ['name' , 'email' , 'password' , 'national_id' ];
+    // protected $guard_name = 'web';
+    protected $fillable = ['name' , 'email' , 'password' , 'national_id' , 'avatar'];
 
 
     public function receptionist(){

@@ -52,10 +52,17 @@
                 </li>
                 </li>
                 <li class="nav-item">
+<<<<<<< HEAD
                     <a href="/mang-room" class="nav-link">
                         <i class="nav-icon fad fa-arrow-circle-right"></i>
                         <p>
                             Manage rooms
+=======
+                    <a href="/mang-user" class="nav-link">
+                        <i class="nav-icon fad fa-arrow-circle-right"></i>
+                        <p>
+                        Manage Users
+>>>>>>> aliaa
                         </p>
                     </a>
                 </li>
@@ -71,10 +78,17 @@
                 </li>
                 </li>
                 <li class="nav-item">
+<<<<<<< HEAD
                     <a href="/mang-user" class="nav-link">
                         <i class="nav-icon fad fa-arrow-circle-right"></i>
                         <p>
                             Manage Users
+=======
+                    <a href="/show-rooms" class="nav-link">
+                        <i class="nav-icon fad fa-arrow-circle-right"></i>
+                        <p>
+                            Manage rooms
+>>>>>>> aliaa
 
                         </p>
                     </a>
