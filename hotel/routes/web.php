@@ -5,6 +5,7 @@ use App\Http\Controllers\MangerController;
 use App\Http\Controllers\ReceptionestController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\CheckUser;
 
 
 
@@ -34,6 +35,7 @@ require __DIR__.'/auth.php';
 Route::get('/main', function(){
     return view('main');
 });
+
 
 
 //LOg in

@@ -44,7 +44,8 @@
                     name="password_confirmation" required />
             </div>
             <div class="mt-4 ">
-                <x-label for="Country" :value="__('Country')" />
+                <x-label for="Country" :value="__('Country')" /> / 
+                {{-- here  --}}
                 <select style="border-radius: 7px;
                  border: 1px lightgrey solid;cursor:pointer" name="country" class=" block mt-1 w-full">
                     <option value="Egypt">Egypt</option>
