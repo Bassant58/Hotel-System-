@@ -22,3 +22,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+
+//added by aya
+Route::get('/pending',function(){
+    return view('pending');
+})->name('pending')->middleware(['auth','accept']);
