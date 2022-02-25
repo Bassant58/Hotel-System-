@@ -34,8 +34,9 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 Route::get('/main', function(){
     return view('main');
-});
-
+})->name('main')->middleware(['auth','accept']);
+;
+//added name by aya 1,2
 
 
 //LOg in
@@ -75,3 +76,8 @@ Route::get('/show-receptionest/{id}', [ReceptionestController::class,'show']);
 Route::get('/data-user', [UserController::class,'getUserData'])->name('UserData');
 Route::get('/mang-user', [UserController::class,'manage']);
 Route::get('/accept/{id}', [UserController::class,'accept']);
+
+//added by aya
+Route::get('/pending',function(){
+    return view('pending');
+})->name('pending')->middleware(['auth','pending']);
