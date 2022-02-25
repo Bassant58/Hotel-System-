@@ -24,4 +24,10 @@ class Room extends Model
         return $this->belongsTo(Floor::class , 'floor_id' , 'id');
     }
 
+
+    public function reservation(){
+
+        return $this->hasMany(Reservation::class , 'room_id' , 'id');
+    }
+
 }

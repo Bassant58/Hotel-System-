@@ -1,14 +1,15 @@
 <?php
+
 namespace App\DataTables;
 
-use App\Models\Manager;
+use App\Models\Room;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ManagerDataTable extends DataTable
+class RoomDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -20,16 +21,16 @@ class ManagerDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'manager.action');
+            ->addColumn('action', 'room.action');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Manager $model
+     * @param \App\Models\Room $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Manager $model)
+    public function query(Room $model)
     {
         return $model->newQuery();
     }
@@ -42,10 +43,10 @@ class ManagerDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('manager-table')
+                    ->setTableId('room-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    // ->dom('Bfrtip')
+                    // ->dom('Bfrtip') return box not important
                     ->orderBy(1);
                     // ->buttons(
                     //     Button::make('create'),
@@ -64,10 +65,9 @@ class ManagerDataTable extends DataTable
     protected function getColumns()
     {
         return [
-
-          'name',
-          'email'
+            'id' , 'room_code' , 'capacity' , 'price' , 'status'
         ];
+        
     }
 
     /**
@@ -77,7 +77,6 @@ class ManagerDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Manager_' . date('YmdHis');
+        return 'Room_' . date('YmdHis');
     }
-
 }
