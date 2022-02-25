@@ -54,6 +54,3 @@ Route::get('/del-receptionest/{id}', [ReceptionestController::class,'delete']);
 Route::get('/show-receptionest/{id}', [ReceptionestController::class,'show']);
 
 
-Route::get('/show-rooms', [UserReservationController::class,'getRooms'])->name('room.all');
-Route::get('reservations/rooms/{roomId}', [UserReservationController::class,'showOneRoom'])->name('room.oneRoom');
-Route::post('reservations/rooms/check/{roomId}', [UserReservationController::class,'checkNumberWithRoomCapacity'])->name('room.check');
