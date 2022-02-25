@@ -47,11 +47,20 @@
                 <x-label for="Country" :value="__('Country')" />
                 <select style="border-radius: 7px;
                  border: 1px lightgrey solid;cursor:pointer" name="country" class=" block mt-1 w-full">
-                    <option value="Egypt">Egypt</option>
-                    <option value="Unitade state">Unitade state</option>
-                    <option value="Australia">Australia</option>
-                    <option value="Saudi arabia">Saudi arabia</option>
+                 @foreach($countries as $country)
+                    <option value="{{$country->name}}">{{$country->name}}</option>
+                 @endforeach
                 </select>
+            </div>
+            <!-- Gender -->
+
+            <div class="mt-4 ">
+                <x-label for="gender" :value="__('Gender')" />
+                <input type="radio" name='gender' value='Male'>  
+                <label for="Male">Male</label>
+                <br>  
+                <input type="radio" name='gender' value='Female'>  
+                <label for="Female">Female</label>             
             </div>
             <!-- try only -->
             <x-input id="password_confirmation" class="block mt-1 w-full" type="hidden" name="receptionist_id"
