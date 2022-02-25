@@ -7,6 +7,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserReservationController;
 use App\Http\Controllers\FloorController;
+use App\Http\Controllers\RoomController;
+
 
 
 // use Spatie\Permission\Models\Role;
@@ -94,6 +96,20 @@ Route::get('/mang-floor', [FloorController::class,'manage']);
 Route::get('/add-floor', [FloorController::class,'add']);
 Route::post('/store-floor', [FloorController::class,'store']);
 
+Route::get('/edit-floor/{id}', [FloorController::class,'update']);
+Route::post('/save-floor', [FloorController::class,'save']);
 
+Route::get('/del-floor/{id}', [FloorController::class,'delete']);
 
+//Room Admin Side
+Route::get('/data-room', [RoomController::class,'getRoomData'])->name('RoomData');
+Route::get('/mang-room', [RoomController::class,'manage']);
+
+Route::get('/add-room', [RoomController::class,'add']);
+Route::post('/store-room', [RoomController::class,'store']);
+
+Route::get('/edit-room/{id}', [RoomController::class,'update']);
+Route::post('/save-room', [RoomController::class,'save']);
+
+Route::get('/del-room/{id}', [RoomController::class,'delete']);
 

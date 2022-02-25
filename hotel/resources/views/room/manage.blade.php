@@ -1,20 +1,17 @@
  @extends('_layouts.master')
 
  @section('content')
- @if(session()->has('message'))
-    <script>
-       alert("Sorry we can't delete this floor ,there is a Room related to this Floor!")
-    </script>
-@endif
  <div class="container">
      <div class="row">
      <table class="table table-bordered yajra-datatable" id="user">
          <thead>
              <tr>
-                 <th>Name</th>
-                 <th>Floor_Code</th>
-                 <th>Manager_Id</th>
-                 <th>Action</th>
+                <th>ID</th>
+                <th>Room Code</th>
+                <th>Capacity</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Action</th>
              </tr>
          </thead>
          <tbody>
@@ -25,7 +22,7 @@
  <div class="container">
     <div class="row">
         <div class="col-2">
-            <a href='/add-floor' class='btn btn-success'>Add New Floor</a>
+            <a href='/add-room' class='btn btn-success'>Add New Room</a>
         </div>
     </div>
 </div>
@@ -34,26 +31,34 @@
  <script type="text/javascript">
 $(document).ready(function() {
     var dataTable = $('#user').DataTable({
-        ajax: '{{route('FloorData')}}',
+        ajax: '{{route('RoomData')}}',
         "order": [
             [0, "desc"]
         ],
 
         columns: [{
-                data: 'name',
-                name: 'name'
+                data: 'id',
+                name: 'id'
             },
             {
-                data: 'floor_code',
-                name: 'floor_code'
+                data: 'room_code',
+                name: 'room_code'
             },
             {
-                data: 'manager_id',
-                name: 'manager_id',
+                data: 'capacity',
+                name: 'capacity'
             },
             {
-                data: 'action',
-                name: 'action',
+                data: 'price',
+                name: 'price'
+            },
+            {
+                data: 'status',
+                name: 'status'
+            },
+            {
+                data:'action',
+                name:'action',
 
                 sClass: 'text-center'
             },

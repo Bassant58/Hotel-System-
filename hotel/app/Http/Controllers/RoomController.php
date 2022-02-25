@@ -1,20 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Room;
 use App\Models\Floor;
 use Faker\Factory as Faker;
-use Illuminate\Http\Request;
-use App\DataTables\FloorDataTable;
+use App\DataTables\RoomDataTable;
 use DataTables;
 
-class FloorController extends Controller
+class RoomController extends Controller
 {
-    public function manage(FloorDataTable $dataTable){
-        return view('floor.manage');
+    public function manage(RoomDataTable $dataTable){
+        return view('room.manage');
        }
     
-       public function getFloorData(){
-       $data =Floor::all();
+       public function getRoomData(){
+       $data =Room::all();
        return Datatables::of($data)
            ->addColumn('action', function ($row) {
                $actionBtn = "<a  class='btn btn-primary'  href='/edit-floor/$row->id'>Edit</a>
@@ -26,38 +28,43 @@ class FloorController extends Controller
         }
 
         public function add(){
-            return view('floor.add-update');
+            $floors=Floor::all();
+            return view('room.add-update',[
+               'floors'=>$floors
+            ]);
         }
     
     public function store(){
         $faker = Faker::create();
-        Floor::create([
-            'floor_code'=>$faker->unique()->numberBetween(1000, 9999),
-            'name'=>Request()->name,
+        Room::create([
+            'room_code'=>$faker->unique()->numberBetween(1000, 9999),
+            'price'=>Request()->price,
+            'capacity'=>Request()->capacity,
+            'floor_id'=>Request()->floor_id,
             'manager_id'=>auth()->user()->id,
         ]);
-        return redirect('/mang-floor');
+        return redirect('/mang-room');
     }
 
     public function delete($id){
-        $floor= Floor::find($id); 
-         if($floor->room != '[]'){
+        $room= Room::find($id); 
+         if($room->reservation != '[]'){
              return redirect()->back()->with('message', 'IT WORKS!');
          }
          else{
-            $floor->delete(); 
-            return redirect('/mang-floor');
+            $room->delete(); 
+            return redirect('/mang-room');
          }
     }
      public function update($id){
-        $floor=Floor::find($id); 
-        return view('floor.add-update',[
+        $room=Room::find($id); 
+        return view('room.add-update',[
             'floor'=>$floor
         ]);
    }
    public function save(){
-        $floor=Floor::find(Request()->id); 
+        $floor=Room::find(Request()->id); 
         $floor->update(Request()->all());
-        return redirect('/mang-floor');
+        return redirect('/mang-room');
    }
 }

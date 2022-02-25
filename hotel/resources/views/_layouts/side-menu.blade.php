@@ -70,11 +70,10 @@
                 </li>
                 </li>
                 <li class="nav-item">
-                    <a href="/show-rooms" class="nav-link">
+                    <a href="/mang-room" class="nav-link">
                         <i class="nav-icon fad fa-arrow-circle-right"></i>
                         <p>
                             Manage rooms
-
                         </p>
                     </a>
                 </li>

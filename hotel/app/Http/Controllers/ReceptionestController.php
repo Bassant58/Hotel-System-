@@ -63,9 +63,7 @@ class ReceptionestController extends Controller
     }
     public function save(){
          $receptionist=Receptionist::find(Request()->id); 
-         $receptionist->name=Request()->name;
-         $receptionist->email=Request()->email;
-         $receptionist->save();
+         $receptionist->update(Request()->all());
          return redirect('/mang-receptionest');
     }
     public function ban($id){

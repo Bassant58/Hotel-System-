@@ -46,18 +46,16 @@ class MangerController extends Controller
        $manager->assignRole('manager');
        return redirect('/mang-manger');
     }
-// lazm on delete set
+
     public function delete($id){
        $manager= Manager::find($id); 
 
         if($manager->receptionist){
-            // return '<script type="text/javascript">alert("hello!");</script>';
             $manager->receptionist->manager_id=null;
             $manager->receptionist->save();
         }
         $manager->delete(); 
         return redirect('/mang-manger');
-
     }
     public function display($id){
         $manager=Manager::find($id); 
@@ -69,13 +67,10 @@ class MangerController extends Controller
         return view('manager.add-update',[
             'manger'=>$manager
         ]);
-
     }
     public function save(){
         $manager=Manager::find(Request()->id); 
-        $manager->name=Request()->name;
-        $manager->email=Request()->email;
-        $manager->save();
+        $manager->update(Request()->all());
         return redirect('/mang-manger');
     }
 }
