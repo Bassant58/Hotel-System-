@@ -19,12 +19,12 @@
                     @elseif(Auth::guard('web')->check())
                         <h3> Welcome {{Auth::user()->name }}</h3>
                     @endif
-                    @role('client')
-                    Useeer
-                    @endrole
-                    @role('manager','manager')
-                    Im a Manager
-                    @endrole
+{{--                    @role('client')--}}
+{{--                    Useeer--}}
+{{--                    @endrole--}}
+{{--                    @role('manager','manager')--}}
+{{--                    Im a Manager--}}
+{{--                    @endrole--}}
                 </div>
             </div>
         </div>

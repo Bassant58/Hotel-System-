@@ -37,3 +37,7 @@ class AdminAuthController extends Controller
         return redirect()->route('admin.login.blade');
     }
 }
+//if (Auth::guard('admin')->check())
+//    $id = Auth::guard('admin')->user()->id;
+//elseif (Auth::guard('manager')->check())
+//    $id = Auth::guard('manager')->user()->id ;

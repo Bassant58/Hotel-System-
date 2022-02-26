@@ -12,7 +12,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
     <div class="container">
-      <a class="navbar-brand text-primary" href="#">Hello {{auth()->user()->name}}</a>
+      <a class="navbar-brand text-primary" href="#">Hello {{\Illuminate\Support\Facades\Auth::guard('admin')->check()? \Illuminate\Support\Facades\Auth::guard('admin')->user()->name : \Illuminate\Support\Facades\Auth::guard('manager')->user()->name  }}</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -38,7 +38,7 @@
             <th > capacity:   {{$rooms->capacity}}</th>
             <td >price:   {{$rooms->price}} $</td>
             <td>
-              <a href="  {{route('room.oneRoom' , [ 'roomId'=>$rooms->id])}}" 
+              <a href="  {{route('room.oneRoom' , [ 'roomId'=>$rooms->id])}}"
               class="btn btn-dark ">Make Reservation
               </a>
           </td>
@@ -49,7 +49,7 @@
       </div>
     </div>
   </div>
-  
+
 
 </body>
 </html>

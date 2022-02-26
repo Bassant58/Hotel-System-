@@ -50,7 +50,7 @@
                      @endisset
 
                      <input type="hidden" class="form-control" placeholder="Enter National Id ...." name='manager_id'
-                         value="{{auth()->user()->id??1}}">
+                         value="{{ \Illuminate\Support\Facades\Auth::guard('manager')->check() ? \Illuminate\Support\Facades\Auth::guard('manager')->user()->id : old('manager_id')}}">
                      <div class="col-12 ">
                          <button type="submit" class="btn btn-primary">Submit </button>
                      </div>

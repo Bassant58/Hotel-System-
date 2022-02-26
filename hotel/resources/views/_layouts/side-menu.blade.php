@@ -50,22 +50,13 @@
                         </p>
                     </a>
                 </li>
-                </li>
                 <li class="nav-item">
-<<<<<<< HEAD
-                    <a href="/mang-room" class="nav-link">
-                        <i class="nav-icon fad fa-arrow-circle-right"></i>
-                        <p>
-                            Manage rooms
-=======
                     <a href="/mang-user" class="nav-link">
                         <i class="nav-icon fad fa-arrow-circle-right"></i>
                         <p>
-                        Manage Users
->>>>>>> aliaa
+                             Manage Users
                         </p>
                     </a>
-                </li>
                 </li>
                 <li class="nav-item">
                     <a href="/mang-floor" class="nav-link">
@@ -76,19 +67,11 @@
                         </p>
                     </a>
                 </li>
-                </li>
                 <li class="nav-item">
-<<<<<<< HEAD
-                    <a href="/mang-user" class="nav-link">
-                        <i class="nav-icon fad fa-arrow-circle-right"></i>
-                        <p>
-                            Manage Users
-=======
                     <a href="/show-rooms" class="nav-link">
                         <i class="nav-icon fad fa-arrow-circle-right"></i>
                         <p>
                             Manage rooms
->>>>>>> aliaa
 
                         </p>
                     </a>

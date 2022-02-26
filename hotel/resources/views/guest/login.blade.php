@@ -36,8 +36,4 @@
             </div>
         </form>
     </x-auth-card>
-<<<<<<< HEAD
 </x-guest-layout>
-=======
-</x-guest-layout>
->>>>>>> aliaa

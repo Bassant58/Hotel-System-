@@ -55,7 +55,7 @@ $(document).ready(function() {
                data: 'action',
                name: 'action',
 
-               sClass: 'text-center'
+               Class: 'text-center'
            },
        ]
    });
