@@ -52,4 +52,10 @@ class User extends Authenticatable
 
         return $this->hasMany(Reservation::class , 'user_id' , 'id');
     }
+
+
+    public function receptionist(){
+
+        return $this->belongsTo(Receptionist::class , 'receptionist_id' , 'id');
+    }
 }

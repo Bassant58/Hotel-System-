@@ -12,8 +12,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
     <div class="container">
-      <a class="navbar-brand text-primary" href="#">Hello {{auth()->user()->name}}</a>
-      <a class="navbar-brand text-primary" href=" {{route('user.reservation' , [ 'user_id'=>auth()->user()->id])}} "> My Reservations</a>
+      <a class="navbar-brand text-primary" href="">Hello {{auth()->user()->name}}</a>
+      <h4 class=" text-success pt-1 ps-3"> Your Reservatios </h4>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -28,29 +28,27 @@
       <table class="table table-success table-striped text-center">
         <thead>
           <tr>
-            <th scope="col">Capacity</th>
-            <th scope="col">Price</th>
-            <th scope="col">Reserve</th>
+            <th scope="col">Accomany Number</th>
+            <th scope="col">Paid Price</th>
+            <th scope="col">Room number</th>
           </tr>
         </thead>
         <tbody>
-        @foreach ($room as  $rooms)
-          <tr>
-            <th > capacity:   {{$rooms->capacity}}</th>
-            <td >price:   {{$rooms->price}} $</td>
-            <td>
-              <a href="  {{route('room.oneRoom' , [ 'roomId'=>$rooms->id])}}"
-              class="btn btn-dark ">Make Reservation
-              </a>
-          </td>
-          </tr>
-          @endforeach
+            @foreach ($user as $users)
+            <tr>
+                <td> {{$users->people}}</td>
+                <td>{{$users->room->price}} $</td>
+                <td>{{$users->room->room_code}}</td>
+            </tr>
+            @endforeach
+
         </tbody>
       </table>
+      <div class=" text-center"><a href="{{route('room.all')}} " class="btn btn-danger btn-block mb-3 ms-2 mt-4 ">Go Back</a></div>
       </div>
     </div>
   </div>
-
+  
 
 </body>
 </html>

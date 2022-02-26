@@ -50,6 +50,7 @@
                 </div>
             </form>
         </div>
+        <div class=" text-center"><a href="{{route('room.all')}} " class="btn btn-danger btn-block mb-3 ms-2 mt-4 ">Go Back</a></div>
     </div>
   </div>
   

@@ -1,6 +1,11 @@
  @extends('_layouts.master')
 
  @section('content')
+ @if(session()->has('message'))
+    <script>
+       alert("Sorry we can't delete this floor ,there is a Room related to this Floor!")
+    </script>
+@endif
  <div class="container">
      <div class="row">
      <table class="table table-bordered yajra-datatable" id="user">
@@ -9,6 +14,7 @@
                  <th>Name</th>
                  <th>Floor_Code</th>
                  <th>Manager_Id</th>
+                 <th>Manager Name</th>
                  <th>Action</th>
              </tr>
          </thead>
@@ -45,6 +51,10 @@ $(document).ready(function() {
             {
                 data: 'manager_id',
                 name: 'manager_id',
+            },
+            {
+                data: 'manager_name',
+                name: 'manager_name->name',
             },
             {
                 data: 'action',

@@ -9,7 +9,9 @@
                 <th>Username</th>
                 <th>Email</th>
                 <th>status</th>
+                <th>Created At</th>
                 <th>Manager Id</th>
+                <th>Manager Name</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -48,8 +50,16 @@ $(document).ready(function() {
                name: 'Ban_unBan'
            },
            {
+               data: 'created_at',
+               name: 'created_at'
+           },
+           {
                data: 'manager_id',
                name: 'manager_id'
+           },
+           {
+               data: 'manager_name',
+               name: 'manager_name->name'
            },
            {
                data: 'action',

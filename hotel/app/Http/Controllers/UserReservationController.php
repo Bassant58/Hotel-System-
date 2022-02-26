@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservation;
 use App\Models\Room;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Charge;
+use Stripe;
+use Illuminate\Support\Facades\Session;
 
 class UserReservationController extends Controller
 {
@@ -36,4 +41,27 @@ class UserReservationController extends Controller
 
           return back()->with('not match', 'The number not much the room capacity!');
     }
+
+    public function getAllReservations($id){
+        $user = Reservation::with('user')
+        ->where('user_id','=' ,$id)
+        ->get();
+        return view('GuestViews.showReservations' , compact('user'));
+    }
+
+
+    public function index(){
+        return view('stripe');
+    }
+    public function paymentWithStripe(Request $request){
+        // return $request->all();
+        Stripe::setApikey(env('STRIPE_SECRET'));
+        Charge::create([
+             "amount"=> 100 * 100,
+             "currency"=>"usd",
+             "source"=> $request->stripeToken,
+             "description"=> "Try"
+        ]);
+        Session::flash('message','This is a message!'); 
+           }
 }

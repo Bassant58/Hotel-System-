@@ -27,18 +27,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\Room::factory(5)->create();
         \App\Models\Reservation::factory(5)->create();
 
-
-        // $faker = Faker::create();
-
-        // foreach (range(1, 25) as $index) {
-        //     DB::table('managers')->insert([
-
-        //         'email' => $faker->email,
-        //         'name' => $faker->name,
-        //         'password' => Hash::make('12345678'),
-        //         'avatar' => 'avatar.png',
-        //         'national_id' => $faker->numerify('######'),
-        //     ]);
-        // }
+        $this->call([
+            RoleTableSeeder::class,
+        ]);
     }
 }

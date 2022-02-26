@@ -15,8 +15,11 @@ class UserController extends Controller
     }
 
     public function getUserData(){
-        $data =User::all();
+        $data = User::with('receptionist');
         return Datatables::of($data)
+        ->addColumn('receptionist_name', function (User $user) {
+            return $user->receptionist->name;
+        })->rawColumns(['receptionist_name'])
             ->addColumn('action', function ($row) {
                 $actionBtn = "<a  class='btn btn-primary'  href='/accept/$row->id'>Accept</a>";
                 return $actionBtn;

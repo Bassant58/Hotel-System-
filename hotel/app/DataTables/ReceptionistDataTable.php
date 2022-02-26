@@ -67,7 +67,8 @@ class ReceptionistDataTable extends DataTable
         'name',
         'email',
         'Ban_unBan',
-        'manager_id'
+        'manager_id',
+        'created_at'
       ];
     }
 

@@ -11,8 +11,7 @@ use App\Http\Controllers\ReceptionestController;
 // use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserReservationController;
 use App\Http\Controllers\FloorController;
-
-
+use App\Http\Controllers\RoomController;
 
 
 
@@ -103,7 +102,7 @@ Route::get('/main', function(){
 
 //Manager
 Route::get('/data-manger', [MangerController::class,'getManagerData'])->name('ManagerData');
-Route::get('/mang-manger', [MangerController::class,'manage']);
+Route::get('/mang-manger', [MangerController::class,'manage'])->name('manage.manager');
 
 Route::get('/add-manager', [MangerController::class,'add']);
 Route::post('/store-manager', [MangerController::class,'store']);
@@ -141,10 +140,43 @@ Route::get('reservations/rooms/{roomId}', [UserReservationController::class,'sho
 Route::post('reservations/rooms/check/{roomId}', 
 [UserReservationController::class,'checkNumberWithRoomCapacity'])->name('room.check');
 
+//show reservation 
+Route::get('reservations/{user_id}', [UserReservationController::class,'getAllReservations'])->name('user.reservation');
+
 //Floor
 Route::get('/data-floor', [FloorController::class,'getFloorData'])->name('FloorData');
 Route::get('/mang-floor', [FloorController::class,'manage']);
 
 Route::get('/add-floor', [FloorController::class,'add']);
 Route::post('/store-floor', [FloorController::class,'store']);
+
+
+//STRIPE
+Route::get('payment', [UserReservationController::class,'index']);
+Route::post('stripe', [UserReservationController::class,'paymentWithStripe'])->name('stripe');
+
+
+Route::get('/edit-floor/{id}', [FloorController::class,'update']);
+Route::post('/save-floor', [FloorController::class,'save']);
+
+Route::get('/del-floor/{id}', [FloorController::class,'delete']);
+
+//Room Admin Side
+Route::get('/data-room', [RoomController::class,'getRoomData'])->name('RoomData');
+Route::get('/mang-room', [RoomController::class,'manage']);
+
+Route::get('/add-room', [RoomController::class,'add']);
+Route::post('/store-room', [RoomController::class,'store']);
+
+Route::get('/edit-room/{id}', [RoomController::class,'update']);
+Route::post('/save-room', [RoomController::class,'save']);
+
+Route::get('/del-room/{id}', [RoomController::class,'delete']);
+
+
+// Receptionist See Hos Approved Clients
+Route::get('client', [ReceptionestController::class,'index'])->name('client.data');
+Route::get('data-client', [ReceptionestController::class,'clientData'])->name('ClientData');
+
+
 

@@ -13,6 +13,8 @@
             <div class="info">
                 @if(\Illuminate\Support\Facades\Auth::user())
                 <a href="#" class="d-block h1 text-decoration-none">{{auth()->user()->name}}</a>
+                @elseif(\Illuminate\Support\Facades\Auth::user())
+                <a href="#" class="d-block h1 text-decoration-none">{{auth()->user()->name}}</a>
                 @endif
             </div>
         </div>
@@ -28,13 +30,12 @@
                 </div>
             </div>
         </div>
-
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 @role(['admin'])
                 <li class="nav-item">
-                    <a href="/mang-manger" class="nav-link">
+                    <a href="{{route('manage.manager')}} " class="nav-link">
                         <i class="nav-icon fad fa-arrow-circle-right"></i>
                         <p>
                             Manage Mangers
@@ -68,11 +69,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/show-rooms" class="nav-link">
+                    <a href="/mang-room" class="nav-link">
                         <i class="nav-icon fad fa-arrow-circle-right"></i>
                         <p>
                             Manage rooms
-
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href=" {{route('client.data')}} " class="nav-link">
+                        <i class="nav-icon fad fa-arrow-circle-right"></i>
+                        <p>
+                            My Approved Clients
                         </p>
                     </a>
                 </li>

@@ -15,11 +15,14 @@ class FloorController extends Controller
        }
 
        public function getFloorData(){
-       $data =Floor::all();
+       $data = Floor::with('manager');
        return Datatables::of($data)
+       ->addColumn('manager_name', function (Floor $floor) {
+        return $floor->manager->name;
+       })->rawColumns(['manager_name'])
            ->addColumn('action', function ($row) {
-               $actionBtn = "<a  class='btn btn-primary'  href='/edit-manager/$row->id'>Edit</a>
-                             <a  class='btn btn-danger'  href='/del-manager/$row->id'>Delete</a>
+               $actionBtn = "<a  class='btn btn-primary'  href='/edit-floor/$row->id'>Edit</a>
+                             <a  class='btn btn-danger'  href='/del-floor/$row->id'>Delete</a> 
                           ";
                return $actionBtn;
            })->rawColumns(['action'])
@@ -39,4 +42,26 @@ class FloorController extends Controller
         ]);
         return redirect('/mang-floor');
     }
+
+    public function delete($id){
+        $floor= Floor::find($id); 
+         if($floor->room != '[]'){
+             return redirect()->back()->with('message', 'IT WORKS!');
+         }
+         else{
+            $floor->delete(); 
+            return redirect('/mang-floor');
+         }
+    }
+     public function update($id){
+        $floor=Floor::find($id); 
+        return view('floor.add-update',[
+            'floor'=>$floor
+        ]);
+   }
+   public function save(){
+        $floor=Floor::find(Request()->id); 
+        $floor->update(Request()->all());
+        return redirect('/mang-floor');
+   }
 }
