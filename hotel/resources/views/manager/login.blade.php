@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <a href="/"> Back Home  </a>
     <x-auth-card>
         <x-slot name="logo">
             <h2> Manager Login Page</h2>

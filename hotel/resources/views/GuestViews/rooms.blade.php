@@ -14,7 +14,16 @@
     <div class="container">
       <a class="navbar-brand text-primary" href="#">Hello {{auth()->user()->name}}</a>
       <a class="navbar-brand text-primary" href=" {{route('user.reservation' , [ 'user_id'=>auth()->user()->id])}} "> My Reservations</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+          <form  method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="btn btn-outline-light border-0">
+                <a class="nav-link">
+                    <i class="fad fa-arrow-circle-right"></i>
+                    <p class="d-inline">Logout</p>
+                </a>
+            </button>
+        </form>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

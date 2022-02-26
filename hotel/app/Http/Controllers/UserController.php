@@ -47,4 +47,7 @@ class UserController extends Controller
         return redirect('/mang-user');
 
     }
+    public function pending(){
+        return view('pending');
+    }
 }

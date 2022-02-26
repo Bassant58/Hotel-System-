@@ -22,12 +22,13 @@ class RedirectIfAuthenticated
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
-//            switch ($guard) {
-//                case 'admin':
-//                    if (Auth::guard($guard)->check()) {
-//                        return redirect(RouteServiceProvider::HOME);
-////                        return redirect(route('dashboard'));
-//                    }
+            switch ($guard) {
+                case 'admin':
+                    if (Auth::guard($guard)->check()) {
+                        return redirect(route('room.all'));
+//                        return redirect(route('dashboard'));
+                    }
+                    break;
 //                case 'manager':
 //                    if (Auth::guard($guard)->check()) {
 ////                        return redirect(RouteServiceProvider::HOME);
@@ -38,7 +39,7 @@ class RedirectIfAuthenticated
 ////                        return redirect(RouteServiceProvider::HOME);
 //                        return redirect(route('dashboard'));
 //                    }
-//                default:
+                default:
                     if (Auth::guard($guard)->check()) {
                         return redirect(RouteServiceProvider::HOME);
                     }
@@ -47,4 +48,5 @@ class RedirectIfAuthenticated
 //        }
         return $next($request);
     }
+}
 }

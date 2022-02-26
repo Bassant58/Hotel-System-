@@ -137,7 +137,7 @@ Route::get('/mang-user', [UserController::class,'manage']);
 Route::get('/accept/{id}', [UserController::class,'accept']);
 
 //Room
-Route::get('/show-rooms', [UserReservationController::class,'getRooms'])->name('room.all');
+Route::get('/show-rooms', [UserReservationController::class,'getRooms'])->name('room.all')->middleware('accept');
 Route::get('reservations/rooms/{roomId}', [UserReservationController::class,'showOneRoom'])->name('room.oneRoom');
 Route::post('reservations/rooms/check/{roomId}',
 [UserReservationController::class,'checkNumberWithRoomCapacity'])->name('room.check');
@@ -180,4 +180,4 @@ Route::get('/del-room/{id}', [RoomController::class,'delete']);
 Route::get('client', [ReceptionestController::class,'index'])->name('client.data');
 Route::get('data-client', [ReceptionestController::class,'clientData'])->name('ClientData');
 
-
+Route::get('pending',[UserController::class,'pending'])->name('pending');
