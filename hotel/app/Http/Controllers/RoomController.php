@@ -8,13 +8,14 @@ use App\Models\Floor;
 use Faker\Factory as Faker;
 use App\DataTables\RoomDataTable;
 use DataTables;
+use Illuminate\Support\Facades\Auth;
 
 class RoomController extends Controller
 {
     public function manage(RoomDataTable $dataTable){
         return view('room.manage');
        }
-    
+
        public function getRoomData(){
        $data =Room::with('floor');
        return Datatables::of($data)
@@ -23,7 +24,7 @@ class RoomController extends Controller
        })->rawColumns(['floor_name'])
            ->addColumn('action', function ($row) {
                $actionBtn = "<a  class='btn btn-primary'  href='/edit-room/$row->id'>Edit</a>
-                             <a  class='btn btn-danger'  href='/del-room/$row->id'>Delete</a> 
+                             <a  class='btn btn-danger'  href='/del-room/$row->id'>Delete</a>
                           ";
                return $actionBtn;
            })->rawColumns(['action'])
@@ -36,7 +37,7 @@ class RoomController extends Controller
                'floors'=>$floors
             ]);
         }
-    
+
     public function store(){
         $faker = Faker::create();
         Room::create([
@@ -44,23 +45,23 @@ class RoomController extends Controller
             'price'=>Request()->price,
             'capacity'=>Request()->capacity,
             'floor_id'=>Request()->floor_id,
-            'manager_id'=>auth()->user()->id,
+            'manager_id'=>Auth::guard('manager')->user()->id,
         ]);
         return redirect('/mang-room');
     }
 
     public function delete($id){
-        $room= Room::find($id); 
+        $room= Room::find($id);
          if($room->reservation != '[]'){
              return redirect()->back()->with('message', 'IT WORKS!');
          }
          else{
-            $room->delete(); 
+            $room->delete();
             return redirect('/mang-room');
          }
     }
      public function update($id){
-        $room=Room::find($id); 
+        $room=Room::find($id);
         $floors= Floor::all();
         return view('room.add-update',[
             'room'=>$room,
@@ -68,7 +69,7 @@ class RoomController extends Controller
         ]);
    }
    public function save(){
-        $floor=Room::find(Request()->id); 
+        $floor=Room::find(Request()->id);
         $floor->update(Request()->all());
         return redirect('/mang-room');
    }

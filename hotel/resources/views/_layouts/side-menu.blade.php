@@ -11,10 +11,12 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="info">
-                @if(\Illuminate\Support\Facades\Auth::user())
-                <a href="#" class="d-block h1 text-decoration-none">{{auth()->user()->name}}</a>
-                @elseif(\Illuminate\Support\Facades\Auth::user())
-                <a href="#" class="d-block h1 text-decoration-none">{{auth()->user()->name}}</a>
+                @if(\Illuminate\Support\Facades\Auth::guard('manager')->check())
+                     <a href="#" class="d-block h2 text-decoration-none">{{\Illuminate\Support\Facades\Auth::guard('manager')->user()->name}}</a>
+                @elseif(\Illuminate\Support\Facades\Auth::guard('admin')->check())
+                     <a href="#" class="d-block h2 text-decoration-none">{{\Illuminate\Support\Facades\Auth::guard('admin')->user()->name}}</a>
+                @elseif(\Illuminate\Support\Facades\Auth::guard('receptionist')->check())
+                     <a href="#" class="d-block h2 text-decoration-none">{{\Illuminate\Support\Facades\Auth::guard('receptionist')->user()->name}}</a>
                 @endif
             </div>
         </div>

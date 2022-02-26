@@ -4,6 +4,8 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\ManagerAuthController;
 use App\Http\Controllers\ReceptionistAuthController;
 use App\Http\Controllers\UserController;
+use App\Models\Receptionist;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MangerController;
 use App\Http\Controllers\ReceptionestController;
@@ -88,9 +90,9 @@ Route::get('/show-receptionest/{id}', [ReceptionestController::class,'show']);
 Route::get('/mang-user', [UserController::class,'manage']);
 
 require __DIR__.'/auth.php';
-Route::get('/main', function(){
-    return view('main');
-});
+//Route::get('/main', function(){
+//    return view('main');
+//});
 
 
 // //LOg in
@@ -137,10 +139,10 @@ Route::get('/accept/{id}', [UserController::class,'accept']);
 //Room
 Route::get('/show-rooms', [UserReservationController::class,'getRooms'])->name('room.all');
 Route::get('reservations/rooms/{roomId}', [UserReservationController::class,'showOneRoom'])->name('room.oneRoom');
-Route::post('reservations/rooms/check/{roomId}', 
+Route::post('reservations/rooms/check/{roomId}',
 [UserReservationController::class,'checkNumberWithRoomCapacity'])->name('room.check');
 
-//show reservation 
+//show reservation
 Route::get('reservations/{user_id}', [UserReservationController::class,'getAllReservations'])->name('user.reservation');
 
 //Floor
@@ -177,6 +179,5 @@ Route::get('/del-room/{id}', [RoomController::class,'delete']);
 // Receptionist See Hos Approved Clients
 Route::get('client', [ReceptionestController::class,'index'])->name('client.data');
 Route::get('data-client', [ReceptionestController::class,'clientData'])->name('ClientData');
-
 
 

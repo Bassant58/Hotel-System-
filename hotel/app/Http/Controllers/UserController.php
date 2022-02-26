@@ -42,7 +42,7 @@ class UserController extends Controller
 
         $user=User::find($id);
         $user->status='accept';
-        $user->receptionist_id= request()-> manger_id ;
+        $user->receptionist_id= Auth::guard('receptionist')->user()->id ;
         $user->save();
         return redirect('/mang-user');
 

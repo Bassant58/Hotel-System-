@@ -65,7 +65,7 @@ $(document).ready(function() {
                data: 'action',
                name: 'action',
 
-               Class: 'text-center'
+               sClass: 'text-center'
            },
        ]
    });

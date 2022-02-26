@@ -8,6 +8,7 @@ use App\DataTables\ReceptionistDataTable;
 use App\DataTables\UserDataTable;
 use App\Models\User;
 use DataTables;
+use Illuminate\Support\Facades\Auth;
 
 class ReceptionestController extends Controller
 {
@@ -29,16 +30,19 @@ class ReceptionestController extends Controller
      })->rawColumns(['created_at'])
             ->addColumn('action', function ($row) {
                 $actionBtn = "<a  class='btn btn-primary'  href='/edit-receptionest/$row->id'>Edit</a>
-                              <a  class='btn btn-success'  href='/show-receptionest/$row->id'>Show</a>
-                              <a  class='btn btn-danger'  href='/del-receptionest/$row->id'>Delete</a>
-                              <a  class='btn btn-secondary'  href='/ban-receptionest/$row->id'>Ban</a>";
+                              <a  class='btn btn-danger'  href='/del-receptionest/$row->id'>Delete</a>";
+                    if (Auth::guard('manager')->user()->id == $row -> manager_id){
+                       return   "<a  class='btn btn-primary'  href='/edit-receptionest/$row->id'>Edit</a>
+                                 <a  class='btn btn-danger'  href='/del-receptionest/$row->id'>Delete</a>
+                                 <a  class='btn btn-secondary' id='ban' href='/ban-receptionest/$row->id'>Ban</a>
+                                 ";}
 
                 return $actionBtn;
             })
             ->rawColumns(['action'])
             ->make(true);
          }
-
+//<a  class='btn btn-success'  href='/show-receptionest/$row->id'>Show</a>
     public function store(){
         $attripute=Request()->validate([
          'name' => 'required|min:6|max:16',
@@ -72,17 +76,25 @@ class ReceptionestController extends Controller
 
     }
     public function save(){
-         $receptionist=Receptionist::find(Request()->id); 
+         $receptionist=Receptionist::find(Request()->id);
+//         return $receptionist ;
          $receptionist->update(Request()->all());
          return redirect('/mang-receptionest');
     }
     public function ban($id){
         $receptionist=Receptionist::find($id);
-        if( $receptionist->Ban_unBan=='Baned'){
-            $receptionist->Ban_unBan='unBaned';
+        if( $receptionist->Ban_unBan=='Ban'){
+            $receptionist->Ban_unBan='Unban';
+//            "<script>
+//               document.getElementById('ban').innerHTML='Unban';
+//            </script>";
         }
         else{
-            $receptionist->Ban_unBan='Baned';
+            $receptionist->Ban_unBan='Ban';
+//            "<script>
+//               document.getElementById('ban').innerHTML='Ban';
+//               alert('Heeeee');
+//            </script>";
         }
         $receptionist->save();
         return redirect('/mang-receptionest');
@@ -96,8 +108,11 @@ class ReceptionestController extends Controller
     }
 
     public function clientData(){
-        $data = User::all();
-        return Datatables::of($data)
+        $RecId = Auth::guard('receptionist')->user()->id;
+        $RecUser = Receptionist::findOrfail($RecId);
+        $Rec = $RecUser -> user ;
+//        return $Rec ;
+        return Datatables::of($Rec)
             ->make(true);
     }
 
@@ -108,4 +123,4 @@ class ReceptionestController extends Controller
 
 
 
- 
+

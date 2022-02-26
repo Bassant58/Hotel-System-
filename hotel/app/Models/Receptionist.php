@@ -24,7 +24,7 @@ class Receptionist extends Authenticatable
 
     public function user(){
 
-        return $this->hasMany(User::class , 'user_id' , 'id');
+        return $this->hasMany(User::class , 'receptionist_id' , 'id');
     }
 
 
