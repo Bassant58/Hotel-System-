@@ -22,7 +22,8 @@ class User extends Authenticatable
         'email',
         'password',
         'country',
-        'receptionist_id'
+        'receptionist_id',
+        'gender'
 
     ];
 
@@ -50,5 +51,11 @@ class User extends Authenticatable
     public function reservation(){
 
         return $this->hasMany(Reservation::class , 'user_id' , 'id');
+    }
+
+
+    public function receptionist(){
+
+        return $this->belongsTo(Receptionist::class , 'receptionist_id' , 'id');
     }
 }

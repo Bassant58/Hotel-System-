@@ -65,7 +65,7 @@ class RoomDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id' , 'room_code' , 'capacity' , 'price' , 'status'
+            'id' , 'room_code' , 'capacity' , 'price' , 'status' , 'floor_id'
         ];
         
     }

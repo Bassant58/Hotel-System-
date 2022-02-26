@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Receptionist;
 use App\DataTables\ReceptionistDataTable;
+use App\DataTables\UserDataTable;
+use App\Models\User;
 use DataTables;
 class ReceptionestController extends Controller
 {
@@ -16,8 +18,14 @@ class ReceptionestController extends Controller
     }
 
     public function getReceptionestData(){
-        $data =Receptionist::all();
+        $data =Receptionist::with('manager');
         return Datatables::of($data)
+        ->addColumn('manager_name', function (Receptionist $receptionist) {
+            return $receptionist->manager->name;
+        })->rawColumns(['manager_name'])
+        ->addColumn('created_at', function ($row){
+            return $row->created_at->format('d-M-Y');
+     })->rawColumns(['created_at'])
             ->addColumn('action', function ($row) {
                 $actionBtn = "<a  class='btn btn-primary'  href='/edit-receptionest/$row->id'>Edit</a>
                               <a  class='btn btn-success'  href='/show-receptionest/$row->id'>Show</a> 
@@ -25,7 +33,8 @@ class ReceptionestController extends Controller
                               <a  class='btn btn-secondary'  href='/ban-receptionest/$row->id'>Ban</a>"; 
                            
                 return $actionBtn;
-            })->rawColumns(['action'])
+            })
+            ->rawColumns(['action'])
             ->make(true);
          }
      
@@ -63,9 +72,7 @@ class ReceptionestController extends Controller
     }
     public function save(){
          $receptionist=Receptionist::find(Request()->id); 
-         $receptionist->name=Request()->name;
-         $receptionist->email=Request()->email;
-         $receptionist->save();
+         $receptionist->update(Request()->all());
          return redirect('/mang-receptionest');
     }
     public function ban($id){
@@ -79,4 +86,25 @@ class ReceptionestController extends Controller
         $receptionist->save();
         return redirect('/mang-receptionest');
     }
+
+
+    // See approved Clients
+
+    public function index(UserDataTable $dataTable){
+        return view('receptionest.userData');
+    }
+
+    public function clientData(){
+        $data = User::all();
+        return Datatables::of($data)
+            ->make(true);
+    }
+
+
 }
+
+
+
+
+
+ 

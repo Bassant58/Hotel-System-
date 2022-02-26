@@ -29,16 +29,16 @@
         <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="/admin-login">LOg in As Admin</a>
+                    <a class="nav-link active" href=" {{route('admin.login')}} ">LOg in As Admin</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/manager-login">LOg in As Manager</a>
+                    <a class="nav-link" href="{{route('manager.login')}} ">LOg in As Manager</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/receptionest-login">LOg in As Receptionest</a>
+                    <a class="nav-link" href="{{route('receptionist.login')}} ">LOg in As Receptionest</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/guest-login">LOg in As Guest</a>
+                    <a class="nav-link" href="{{route('guest.login')}} ">LOg in As Guest</a>
                 </li>
             </ul>
             <div class="nav-item">

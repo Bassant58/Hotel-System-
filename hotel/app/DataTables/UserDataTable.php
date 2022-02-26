@@ -67,6 +67,9 @@ class UserDataTable extends DataTable
         return [
             'name',
             'status',
+            'email',
+            'country',
+            'gender',
             'receptionist_id'
           ];
     }

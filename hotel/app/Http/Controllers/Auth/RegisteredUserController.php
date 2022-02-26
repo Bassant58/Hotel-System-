@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use WisdomDiala\Countrypkg\Models\Country;
 
 class RegisteredUserController extends Controller
 {
@@ -20,7 +21,8 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+      $countries=Country::all();
+        return view('auth.register',compact('countries'));
     }
 
     /**
@@ -38,6 +40,7 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'country' => ['required'],
+            'gender' => ['required'],
 
         ]);
 
@@ -47,6 +50,8 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'country' => $request->country,
             'receptionist_id'=> $request->receptionist_id,
+            'gender' => $request->gender,
+
         ]);
 
         event(new Registered($user));

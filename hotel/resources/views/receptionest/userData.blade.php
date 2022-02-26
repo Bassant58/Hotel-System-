@@ -6,11 +6,10 @@
     <table class="table table-bordered yajra-datatable" id="user">
         <thead>
             <tr>
-                <th>Username</th>
-                <th>status</th>
-                <th>Receptionist Id</th>
-                <th>Receptionist Name</th>
-                <th>Action</th>
+                <th>Client Name</th>
+                <th>Email</th>
+                <th>Country</th>
+                <th>Gender</th>
             </tr>
         </thead>
         <tbody>
@@ -23,7 +22,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
    var dataTable = $('#user').DataTable({
-       ajax: '{{route('UserData')}}',
+       ajax: '{{route('ClientData')}}',
        "order": [
            [0, "desc"]
        ],
@@ -33,23 +32,16 @@ $(document).ready(function() {
                name: 'name'
            },
            {
-               data: 'status',
-               name: 'status'
+               data: 'email',
+               name: 'email'
            },
            {
-               data: 'receptionist_id',
-               name: 'receptionist_id',
-
+               data: 'country',
+               name: 'country'
            },
            {
-               data: 'receptionist_name',
-               name: 'receptionist_name->name',
-           },
-           {
-               data: 'action',
-               name: 'action',
-
-               sClass: 'text-center'
+               data: 'gender',
+               name: 'gender'
            },
        ]
    });

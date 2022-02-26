@@ -28,7 +28,10 @@
                              value="{{ old('password') }}">
                          @error('password')
                          <div class="text-danger">{{ $message }}</div>
-                         @endif
+                         @enderror
+
+                         <input type="hidden" class="form-control"  name='manager_id'
+                         value="{{auth()->user()->id??1}}">
                      </div>
                      <div class="col-12 mb-3">
                          <input type="number" class="form-control" placeholder="Enter National Id ...."
@@ -42,15 +45,19 @@
                          <input type="text" class="form-control" placeholder="Avatar img" name='avatar'
                              value="{{ $receptionist->avatar??old('avatar') }}">
                      </div>
-
                      @endisset
+                     
                      @if(isset($receptionist))
-                     <input type="hidden" class="form-control" placeholder="Enter National Id ...." name='id'
+                     <input type="hidden" class="form-control"  name='id'
                          value="{{$receptionist->id}}">
+        
+                     <div class="col-12 mb-3">
+                     <input type="text" class="form-control" placeholder="Enter Manager Id ...." name='manager_id'
+                        value="{{ $receptionist->manager_id??old('manager_id')}}" >
+                    </div>
                      @endisset
 
-                     <input type="hidden" class="form-control" placeholder="Enter National Id ...." name='manager_id'
-                         value="{{auth()->user()->id??1}}">
+                    
                      <div class="col-12 ">
                          <button type="submit" class="btn btn-primary">Submit </button>
                      </div>

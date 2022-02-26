@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\Receptionist;
+use App\Models\Reservation;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ReceptionistDataTable extends DataTable
+class ReservationDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,16 +21,16 @@ class ReceptionistDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'receptionist.action');
+            ->addColumn('action', 'reservation.action');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Receptionist $model
+     * @param \App\Models\Reservation $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Receptionist $model)
+    public function query(Reservation $model)
     {
         return $model->newQuery();
     }
@@ -43,18 +43,18 @@ class ReceptionistDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('receptionist-table')
+                    ->setTableId('reservation-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->buttons(
-                        Button::make('create'),
-                        Button::make('export'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    );
+                    // ->dom('Bfrtip')
+                    ->orderBy(1);
+                    // ->buttons(
+                    //     Button::make('create'),
+                    //     Button::make('export'),
+                    //     Button::make('print'),
+                    //     Button::make('reset'),
+                    //     Button::make('reload')
+                    // );
     }
 
     /**
@@ -63,13 +63,10 @@ class ReceptionistDataTable extends DataTable
      * @return array
      */
     protected function getColumns()
-    { return [
-        'name',
-        'email',
-        'Ban_unBan',
-        'manager_id',
-        'created_at'
-      ];
+    {
+        return [
+           ''
+        ];
     }
 
     /**
@@ -79,6 +76,6 @@ class ReceptionistDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Receptionist_' . date('YmdHis');
+        return 'Reservation_' . date('YmdHis');
     }
 }

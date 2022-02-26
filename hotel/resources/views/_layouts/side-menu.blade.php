@@ -33,7 +33,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 @role(['admin'])
                 <li class="nav-item">
-                    <a href="/mang-manger" class="nav-link">
+                    <a href="{{route('manage.manager')}} " class="nav-link">
                         <i class="nav-icon fad fa-arrow-circle-right"></i>
                         <p>
                             Manage Mangers
@@ -49,7 +49,7 @@
                         </p>
                     </a>
                 </li>
-                </li>
+                {{-- </li> --}}
                 <li class="nav-item">
                     <a href="/mang-user" class="nav-link">
                         <i class="nav-icon fad fa-arrow-circle-right"></i>
@@ -58,7 +58,7 @@
                         </p>
                     </a>
                 </li>
-                </li>
+                {{-- </li> --}}
                 <li class="nav-item">
                     <a href="/mang-floor" class="nav-link">
                         <i class="nav-icon fad fa-arrow-circle-right"></i>
@@ -68,13 +68,20 @@
                         </p>
                     </a>
                 </li>
-                </li>
+                {{-- </li> --}}
                 <li class="nav-item">
-                    <a href="/show-rooms" class="nav-link">
+                    <a href="/mang-room" class="nav-link">
                         <i class="nav-icon fad fa-arrow-circle-right"></i>
                         <p>
                             Manage rooms
-
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href=" {{route('client.data')}} " class="nav-link">
+                        <i class="nav-icon fad fa-arrow-circle-right"></i>
+                        <p>
+                            My Approved Clients
                         </p>
                     </a>
                 </li>
