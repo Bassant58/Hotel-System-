@@ -23,26 +23,24 @@ class ReceptionestController extends Controller
         $data =Receptionist::with('manager');
         return Datatables::of($data)
         ->addColumn('manager_name', function (Receptionist $receptionist) {
-            return $receptionist->manager->name;
+            return $receptionist->manager->name??null;
         })->rawColumns(['manager_name'])
         ->addColumn('created_at', function ($row){
             return $row->created_at->format('d-M-Y');
      })->rawColumns(['created_at'])
             ->addColumn('action', function ($row) {
-                $actionBtn = "<a  class='btn btn-primary'  href='/edit-receptionest/$row->id'>Edit</a>
-                              <a  class='btn btn-danger'  href='/del-receptionest/$row->id'>Delete</a>";
-                    if (Auth::guard('manager')->user()->id == $row -> manager_id){
+                    if (Auth::guard('admin')->user()){
                        return   "<a  class='btn btn-primary'  href='/edit-receptionest/$row->id'>Edit</a>
                                  <a  class='btn btn-danger'  href='/del-receptionest/$row->id'>Delete</a>
-                                 <a  class='btn btn-secondary' id='ban' href='/ban-receptionest/$row->id'>Ban</a>
-                                 ";}
-
-                return $actionBtn;
+                                 ";}  elseif(Auth::guard('manager')->user()->id == $row -> manager_id)  {
+                                    return   "<a  class='btn btn-primary'  href='/edit-receptionest/$row->id'>Edit</a>
+                                    <a  class='btn btn-danger'  href='/del-receptionest/$row->id'>Delete</a>
+                                    <a  class='btn btn-secondary' id='ban' href='/ban-receptionest/$row->id'>Ban</a>
+                                    "; } 
             })
             ->rawColumns(['action'])
             ->make(true);
          }
-//<a  class='btn btn-success'  href='/show-receptionest/$row->id'>Show</a>
     public function store(){
         $attripute=Request()->validate([
          'name' => 'required|min:6|max:16',

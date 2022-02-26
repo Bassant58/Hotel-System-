@@ -21,9 +21,9 @@ class UserController extends Controller
             return $user->receptionist->name;
         })->rawColumns(['receptionist_name'])
             ->addColumn('action', function ($row) {
-                $actionBtn = "<a  class='btn btn-primary'  href='/accept/$row->id'>Accept</a>";
-                return $actionBtn;
-
+                if (Auth::guard('receptionist')->user()){
+                    return   "<a  class='btn btn-primary'  href='/accept/$row->id'>Accept</a>
+                              ";}                               
             })->rawColumns(['action'])
             ->make(true);
     }

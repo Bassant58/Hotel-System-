@@ -13,7 +13,7 @@
              <tr>
                 <th>Room Code</th>
                 <th>Capacity</th>
-                <th>Price</th>
+                <th>Price $</th>
                 <th>Status</th>
                 <th>Floor_id</th>
                 <th>Floor Name</th>

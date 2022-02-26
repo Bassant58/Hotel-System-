@@ -16,10 +16,8 @@ class CreateFloorsTable extends Migration
         Schema::create('floors', function (Blueprint $table) {
             $table->id();
             $table->integer('floor_code');
-            // $table->increments('floor_id')->rand(0 , 4)->unique();
             $table->string('name');
-            $table->unsignedBigInteger('manager_id');
-            $table->foreign('manager_id')->references('id')->on('managers')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('manager_id')->nullable()->constrained("managers")->cascadeOnUpdate()->nullOnDelete();
             $table->timestamps();
         });
     }

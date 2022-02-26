@@ -32,7 +32,8 @@ class ReceptionistDataTable extends DataTable
      */
     public function query(Receptionist $model)
     {
-        return $model->newQuery();
+        $receptionest = Receptionist::where('manager_id' ,'IS NULL');
+        return $this->applyScopes($receptionest);
     }
 
     /**

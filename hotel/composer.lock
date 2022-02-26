@@ -4004,7 +4004,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Spatie\\TemporaryDirectory\\": "src"
+                    "Spatie\\TemporaryDirectory\\": "src",
             "name": "stripe/stripe-php",
             "version": "v7.114.0",
             "source": {

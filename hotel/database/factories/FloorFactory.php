@@ -19,8 +19,7 @@ class FloorFactory extends Factory
         $manager_id =  DB::table('managers')->pluck('id');
         return [
             'name' => $this->faker->name(),
-            'floor_code' => $this->faker->numberBetween(1, 6),
-            
+            'floor_code' => $this->faker->numberBetween(1111,9999),
             'manager_id' => $this->faker->randomElement($manager_id),
             
         ];

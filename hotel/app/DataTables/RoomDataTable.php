@@ -32,7 +32,8 @@ class RoomDataTable extends DataTable
      */
     public function query(Room $model)
     {
-        return $model->newQuery();
+        $room = Room::where('manager_id' ,'IS NULL');
+        return $this->applyScopes($room);
     }
 
     /**
@@ -65,7 +66,7 @@ class RoomDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id' , 'room_code' , 'capacity' , 'price' , 'status' , 'floor_id'
+            'id' , 'room_code' , 'capacity' , 'price' , 'status' , 'floor_id','manager_id'
         ];
         
     }

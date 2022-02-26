@@ -18,13 +18,17 @@ class FloorController extends Controller
        $data = Floor::with('manager');
        return Datatables::of($data)
        ->addColumn('manager_name', function (Floor $floor) {
-        return $floor->manager->name;
+        return $floor->manager->name??null;
        })->rawColumns(['manager_name'])
            ->addColumn('action', function ($row) {
-               $actionBtn = "<a  class='btn btn-primary'  href='/edit-floor/$row->id'>Edit</a>
-                             <a  class='btn btn-danger'  href='/del-floor/$row->id'>Delete</a> 
-                          ";
-               return $actionBtn;
+            if (Auth::guard('admin')->user()){
+                return  "<a  class='btn btn-primary'  href='/edit-floor/$row->id'>Edit</a>
+                         <a  class='btn btn-danger'  href='/del-floor/$row->id'>Delete</a> 
+                       ";} elseif(Auth::guard('manager')->user()->id == $row -> manager_id)  {
+                        return  "<a  class='btn btn-primary'  href='/edit-floor/$row->id'>Edit</a>
+                                 <a  class='btn btn-danger'  href='/del-floor/$row->id'>Delete</a> 
+                      "; }   
+             
            })->rawColumns(['action'])
            ->make(true);
         }

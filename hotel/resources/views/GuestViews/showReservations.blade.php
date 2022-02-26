@@ -36,8 +36,8 @@
         <tbody>
             @foreach ($user as $users)
             <tr>
-                <td> {{$users->people}}</td>
-                <td>{{$users->room->price}} $</td>
+                <td> {{$users->acompany_num}} Peoples</td>
+                <td>${{$users->room->price}} </td>
                 <td>{{$users->room->room_code}}</td>
             </tr>
             @endforeach

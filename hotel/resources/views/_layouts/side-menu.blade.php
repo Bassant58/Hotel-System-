@@ -35,7 +35,7 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                @role(['admin'])
+                @role('admin','admin')
                 <li class="nav-item">
                     <a href="{{route('manage.manager')}} " class="nav-link">
                         <i class="nav-icon fad fa-arrow-circle-right"></i>
@@ -44,7 +44,6 @@
                         </p>
                     </a>
                 </li>
-                @endrole
                 <li class="nav-item">
                     <a href="/mang-receptionest" class="nav-link">
                         <i class="nav-icon fad fa-arrow-circle-right"></i>
@@ -78,6 +77,51 @@
                         </p>
                     </a>
                 </li>
+                @endrole
+                @role('manager','manager')
+                <li class="nav-item">
+                    <a href="/mang-receptionest" class="nav-link">
+                        <i class="nav-icon fad fa-arrow-circle-right"></i>
+                        <p>
+                            Manage receptionest
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/mang-floor" class="nav-link">
+                        <i class="nav-icon fad fa-arrow-circle-right"></i>
+                        <p>
+                            Manage Floors
+
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/mang-room" class="nav-link">
+                        <i class="nav-icon fad fa-arrow-circle-right"></i>
+                        <p>
+                            Manage rooms
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/mang-user" class="nav-link">
+                        <i class="nav-icon fad fa-arrow-circle-right"></i>
+                        <p>
+                             Manage Users
+                        </p>
+                    </a>
+                </li>
+                @endrole
+                @role('receptionist','receptionist') 
+                <li class="nav-item">
+                    <a href="/mang-user" class="nav-link">
+                        <i class="nav-icon fad fa-arrow-circle-right"></i>
+                        <p>
+                             Manage Users
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href=" {{route('client.data')}} " class="nav-link">
                         <i class="nav-icon fad fa-arrow-circle-right"></i>
@@ -86,6 +130,7 @@
                         </p>
                     </a>
                 </li>
+                @endrole
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

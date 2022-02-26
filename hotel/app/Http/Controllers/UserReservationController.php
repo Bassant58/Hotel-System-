@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Charge;
-use Stripe;
+use Stripe ;
 use Illuminate\Support\Facades\Session;
 
 class UserReservationController extends Controller
@@ -33,10 +33,8 @@ class UserReservationController extends Controller
                 'capacity' => 'required',
                ]);
             
-            // dd($companyNumber['capacity']);
           if($companyNumber['capacity'] == $room->capacity) {
-              return back()->with('matched', 'okay!');
-
+            return view('stripe',compact('room'));
           }
 
           return back()->with('not match', 'The number not much the room capacity!');
@@ -54,14 +52,22 @@ class UserReservationController extends Controller
         return view('stripe');
     }
     public function paymentWithStripe(Request $request){
-        // return $request->all();
-        Stripe::setApikey(env('STRIPE_SECRET'));
-        Charge::create([
-             "amount"=> 100 * 100,
+        Stripe\Stripe::setApikey(env('STRIPE_SECRET'));
+        Stripe\Charge::create([
+             "amount"=> Request()->amount*100,
              "currency"=>"usd",
              "source"=> $request->stripeToken,
              "description"=> "Try"
         ]);
-        Session::flash('message','This is a message!'); 
+        $room=Room::find(Request()->room_id);
+        $room->status='unAvailable';
+        $room->save();
+        Reservation::create([
+            'user_id'=>auth()->user()->id,
+            'room_id'=> $room->id,
+            'receptionist_id'=>1,
+            'acompany_num'=>$room->capacity
+        ]);
+       return redirect()->route('room.all')->with('message','done');
            }
 }

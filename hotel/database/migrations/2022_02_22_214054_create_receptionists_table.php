@@ -20,9 +20,8 @@ class CreateReceptionistsTable extends Migration
             $table->string('password');
             $table->bigInteger('national_id')->unique();
             $table->string('Ban_unBan')->default('Ban');
-            $table->unsignedBigInteger('manager_id')->default(1);
-            $table->foreign('manager_id')->references('id')->on('managers')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
+            $table->foreignId('manager_id')->nullable()->constrained("managers")->cascadeOnUpdate()->nullOnDelete();
         });
     }
 

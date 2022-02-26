@@ -51,7 +51,7 @@
                     <form 
                             role="form" 
                             action="{{ route('stripe') }}" 
-                            method="post" 
+                            method="get" 
                             class="require-validation"
                             data-cc-on-file="false"
                             data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
@@ -64,7 +64,6 @@
                                     class='form-control' size='4' type='text'>
                             </div>
                         </div>
-  
                         <div class='form-row row'>
                             <div class='col-xs-12 form-group card required'>
                                 <label class='control-label'>Card Number</label> <input
@@ -97,13 +96,13 @@
                                     again.</div>
                             </div>
                         </div>
-  
+                               <input type="hidden" name="room_id" value="{{$room->id}}">
+                               <input type="hidden" name="amount" value="{{$room->price}}">
                         <div class="row">
                             <div class="col-xs-12">
-                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now ($100)</button>
+                                <button   class="btn btn-primary btn-lg btn-block" type="submit">Pay Now {{$room->price}} $</button>
                             </div>
-                        </div>
-                          
+                        </div>                         
                     </form>
                 </div>
             </div>        
