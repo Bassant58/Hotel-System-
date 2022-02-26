@@ -23,10 +23,13 @@ class RoomController extends Controller
         return $room->floor->name;
        })->rawColumns(['floor_name'])
            ->addColumn('action', function ($row) {
-               $actionBtn = "<a  class='btn btn-primary'  href='/edit-room/$row->id'>Edit</a>
-                             <a  class='btn btn-danger'  href='/del-room/$row->id'>Delete</a>
-                          ";
-               return $actionBtn;
+            if (Auth::guard('admin')->user()){
+                return  "<a  class='btn btn-primary'  href='/edit-room/$row->id'>Edit</a>
+                <a  class='btn btn-danger'  href='/del-room/$row->id'>Delete</a>
+             ";}  elseif(Auth::guard('manager')->user()->id == $row -> manager_id)  {
+                return  "<a  class='btn btn-primary'  href='/edit-room/$row->id'>Edit</a>
+                        <a  class='btn btn-danger'  href='/del-room/$row->id'>Delete</a>
+             "; }  
            })->rawColumns(['action'])
            ->make(true);
         }

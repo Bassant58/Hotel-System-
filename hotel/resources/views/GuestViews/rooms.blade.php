@@ -12,7 +12,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
     <div class="container">
-      <a class="navbar-brand text-primary" href="#">Hello {{auth()->user()->name}}</a>
+      <a class="navbar-brand text-primary text-bold text-dark" href="#">Welcome {{auth()->user()->name}}</a>
       <a class="navbar-brand text-primary" href=" {{route('user.reservation' , [ 'user_id'=>auth()->user()->id])}} "> My Reservations</a>
           <form  method="POST" action="{{ route('logout') }}">
             @csrf
@@ -32,6 +32,15 @@
     </div>
 </nav>
   <div class="container">
+    @if(session('message'))
+  <div style="position: absolute;
+    bottom: 24px;
+    right: 35px;
+    background-color: #c7dbd2;
+    padding: 10px;
+    border-radius: 20px;">Your Reservation Comoleted
+    </div>
+    @endif
     <div class="row">
       <div class="col-12">
       <table class="table table-success table-striped text-center">
@@ -60,6 +69,11 @@
     </div>
   </div>
 
-
+<script>
+ var alert=document.getElementById('alert')
+     setTimeout(function(){
+      alert.style.display = "none"
+      },3000)
+</script>
 </body>
 </html>

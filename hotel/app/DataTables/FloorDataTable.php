@@ -32,7 +32,8 @@ class FloorDataTable extends DataTable
      */
     public function query(Floor $model)
     {
-        return $model->newQuery();
+        $floor = Floor::where('manager_id' ,'IS NULL');
+        return $this->applyScopes($floor);
     }
 
     /**

@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(5)->create();
         \App\Models\Floor::factory(5)->create();
         \App\Models\Room::factory(5)->create();
-        \App\Models\Reservation::factory(5)->create();
+        // \App\Models\Reservation::factory(5)->create();
 
         $this->call([
             RoleTableSeeder::class,

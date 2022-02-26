@@ -154,8 +154,8 @@ Route::post('/store-floor', [FloorController::class,'store']);
 
 
 //STRIPE
-Route::get('payment', [UserReservationController::class,'index']);
-Route::post('stripe', [UserReservationController::class,'paymentWithStripe'])->name('stripe');
+Route::get('payment', [UserReservationController::class,'index'])->name('payment');
+Route::get('stripe', [UserReservationController::class,'paymentWithStripe'])->name('stripe');
 
 
 Route::get('/edit-floor/{id}', [FloorController::class,'update']);

@@ -32,6 +32,7 @@ class ManagerDataTable extends DataTable
     public function query(Manager $model)
     {
         return $model->newQuery();
+       
     }
 
     /**

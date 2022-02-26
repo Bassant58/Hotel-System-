@@ -14,6 +14,13 @@
                          @enderror
                      </div>
                      @if(isset($floor))
+                     <div class="col-12 mb-3">
+                         <input type="text" class="form-control"  name='manager_id'
+                             value="{{ $floor->manager_id??old('manager_id') }}">
+                         @error('manager_id')
+                         <div class="text-danger">{{ $message }}</div>
+                         @enderror
+                     </div>
                      <input type="hidden" class="form-control"  name='id' value="{{$floor->id}}">                   
                      @endisset
                      <div class="col-12 ">

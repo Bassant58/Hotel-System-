@@ -23,10 +23,10 @@ class RoomFactory extends Factory
         return [
 
             'capacity' => $this->faker->numberBetween(1, 6),
-            'price' => $this->faker->numberBetween(100, 600),
+            'price' => $this->faker->numberBetween(100, 1000),
             'manager_id' => $this->faker->randomElement($manager_id),
             'floor_id' => $this->faker->randomElement($floor_id),
-            'room_code' => $this->faker->numberBetween(1, 6)
+            'room_code' => $this->faker->numberBetween(1111,9999)
             
         ];
     }
