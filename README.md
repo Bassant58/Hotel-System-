@@ -6,8 +6,8 @@ last add the reservation table and migrate
 
 
 Our Names:
-Abdulrhman Salah
-Bassant Ali
-Aliaa Ali
-Aya Saeed
-Aya Gamal
+Abdulrhman Salah,
+Bassant Ali,
+Aliaa Ali,
+Aya Saeed,
+Aya Gamal,
