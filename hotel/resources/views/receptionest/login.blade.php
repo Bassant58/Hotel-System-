@@ -3,9 +3,6 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                @if(session('error'))
-                 <h3> {{session()->get('error')}}</h3>
-                @endif
                 <h2> Receptionist Login Page</h2>
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
             </a>
@@ -14,7 +11,9 @@
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
-
+        @error('error')
+        <h2 class="alert-danger"> {{$message}}</h2>
+        @enderror
         <form method="POST" action="{{ route('receptionist.login') }}">
             @csrf
 

@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
 
-class Receptionist extends Authenticatable
+class Receptionist extends Authenticatable implements HasMedia
 {
-    use HasFactory,HasRoles;
-    // protected $guard_name = 'web';
+    use HasFactory,HasRoles , InteractsWithMedia;
 
-    protected $fillable = ['name' , 'email' , 'password' , 'national_id' , 'avatar','manager_id','Ban_unBan'];
+    protected $fillable = ['name' , 'email' , 'password' , 'national_id' ,'manager_id','Ban_unBan'];
 
     public function manager(){
 

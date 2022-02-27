@@ -3,7 +3,7 @@
  <div class="container">
      <div class="row d-flex justify-content-center">
          <div class="col-8">
-             <form action="{{isset($manger)?'/save-manager/':'/store-manager'}}" method="post">
+             <form action="{{isset($manger)?'/save-manager/':'/store-manager'}}" method="post" enctype="multipart/form-data">
                  @csrf
                  <div class="row mt-5">
                      <div class="col-12 mb-3">
@@ -23,7 +23,7 @@
                      </div>
                      @if(!isset($manger))
                      <div class="col-12 mb-3">
-                         <input type="text" class="form-control" placeholder="Enter Password ...." name='password'
+                         <input type="password" class="form-control" placeholder="Enter Password ...." name='password'
                              value="{{ old('password') }}">
                          @error('password')
                          <div class="text-danger">{{ $message }}</div>
@@ -38,8 +38,8 @@
                      </div>
 
                      <div class="col-12 mb-3">
-                         <input type="text" class="form-control" placeholder="Avatar img" name='avatar'
-                             value="{{ $manger->avatar??old('avatar') }}">
+                         Upload Img :
+                         <input type="file" class="form-control" placeholder="Avatar img" name='mang_img'>
                      </div>
 
                      @endisset

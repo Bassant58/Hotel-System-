@@ -18,12 +18,11 @@ class accept
     public function handle(Request $request, Closure $next)
     {
         if(Auth::user()->status=='accept')
-//         return route(/main)
-    {
-        return $next($request);
-    }
+             return $next($request);
+
     else
     {
+        auth()->logout();
         return redirect(route('pending'));
     }
     }

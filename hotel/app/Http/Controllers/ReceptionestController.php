@@ -28,15 +28,16 @@ class ReceptionestController extends Controller
         ->addColumn('created_at', function ($row){
             return $row->created_at->format('d-M-Y');
      })->rawColumns(['created_at'])
-            ->addColumn('action', function ($row) {
-                    if (Auth::guard('admin')->user()){
+            ->addColumn('action', function ($row)
+            {
+                    if (Auth::guard('admin')->check()){
                        return   "<a  class='btn btn-primary'  href='/edit-receptionest/$row->id'>Edit</a>
-                                 <a  class='btn btn-danger'  href='/del-receptionest/$row->id'>Delete</a>
-                                 ";}  elseif(Auth::guard('manager')->user()->id == $row -> manager_id)  {
-                                    return   "<a  class='btn btn-primary'  href='/edit-receptionest/$row->id'>Edit</a>
-                                    <a  class='btn btn-danger'  href='/del-receptionest/$row->id'>Delete</a>
-                                    <a  class='btn btn-secondary' id='ban' href='/ban-receptionest/$row->id'>Ban</a>
-                                    "; } 
+                                 <a  class='btn btn-danger'  href='/del-receptionest/$row->id'>Delete</a>";}
+                    elseif(Auth::guard('manager')->user()-> id == $row -> manager_id)  {
+                         if ( $row->Ban_unBan == 'Ban'? $ban = 'Unban' : $ban = 'Ban' );
+                            return   "<a  class='btn btn-primary'  href='/edit-receptionest/$row->id'>Edit</a>
+                                      <a  class='btn btn-danger'  href='/del-receptionest/$row->id'>Delete</a>
+                                      <a  class='btn btn-secondary' id='ban' href='/ban-receptionest/$row->id'>$ban</a>"; }
             })
             ->rawColumns(['action'])
             ->make(true);
@@ -47,13 +48,17 @@ class ReceptionestController extends Controller
          'email' => 'required|email',
          'password' => 'required|min:6',
          'national_id' => 'required|min:14|max:14',
-         'avatar' => 'required',
+         'recp_img' => 'required',
 
         ]);
-//        dd($attripute);
-        $receptionist=Receptionist::create($attripute);
-        $receptionist->assignRole('receptionist');
+        $input = \request()->all();
+        $receptionist = Receptionist::create($input);
+        if(\request()->hasFile('recp_img') && \request()->file('recp_img')->isValid()){
+            $receptionist->addMediaFromRequest('recp_img')->toMediaCollection('recp_img');
+
+        $receptionist->assignRole('receptionist','receptionist');
         return redirect('/mang-receptionest');
+    }
     }
 
     public function delete($id){
@@ -83,16 +88,9 @@ class ReceptionestController extends Controller
         $receptionist=Receptionist::find($id);
         if( $receptionist->Ban_unBan=='Ban'){
             $receptionist->Ban_unBan='Unban';
-//            "<script>
-//               document.getElementById('ban').innerHTML='Unban';
-//            </script>";
-        }
+            }
         else{
             $receptionist->Ban_unBan='Ban';
-//            "<script>
-//               document.getElementById('ban').innerHTML='Ban';
-//               alert('Heeeee');
-//            </script>";
         }
         $receptionist->save();
         return redirect('/mang-receptionest');

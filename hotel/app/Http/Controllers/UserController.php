@@ -15,7 +15,7 @@ class UserController extends Controller
     }
 
     public function getUserData(){
-        $data = User::with('receptionist');
+        $data = User::with('receptionist')->where('status','pending')->get();
         return Datatables::of($data)
         ->addColumn('receptionist_name', function (User $user) {
             return $user->receptionist->name;
@@ -23,7 +23,7 @@ class UserController extends Controller
             ->addColumn('action', function ($row) {
                 if (Auth::guard('receptionist')->user()){
                     return   "<a  class='btn btn-primary'  href='/accept/$row->id'>Accept</a>
-                              ";}                               
+                              ";}
             })->rawColumns(['action'])
             ->make(true);
     }

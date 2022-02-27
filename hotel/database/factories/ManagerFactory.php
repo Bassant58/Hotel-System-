@@ -24,12 +24,12 @@ class ManagerFactory extends Factory
      */
     public function definition()
     {
+//        DB::table('roles')->pluck('');
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->email(),
             'password' => Hash::make('123456'),
             'national_id' => $this->faker->numerify('##############'),
-
 
         ];
     }

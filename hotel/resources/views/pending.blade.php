@@ -67,7 +67,7 @@
 <div id="hero" class="hero overlay">
     <div class="hero-content">
         <div class="hero-text">
-            <h1>Thanks {{auth()->user()->name}} for your time</h1>
+            <h1>Thanks For your time</h1>
             <p> We'll review your info and if we can confirm it, you'll be able to access your account </p>
         </div><!-- /.hero-text -->
     </div><!-- /.hero-content -->

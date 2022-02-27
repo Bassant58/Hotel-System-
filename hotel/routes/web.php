@@ -37,7 +37,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->name('dashboard');
+})->name('dashboard')->middleware('ban');
 
 //->middleware(['auth'])
 
@@ -117,7 +117,7 @@ Route::post('/save-manager', [MangerController::class,'save']);
 
 //Receptionist
 Route::get('/data-receptionest', [ReceptionestController::class,'getReceptionestData'])->name('ReceptionestData');
-Route::get('/mang-receptionest', [ReceptionestController::class,'manage']);
+//Route::get('/mang-receptionest', [ReceptionestController::class,'manage']);
 
 Route::get('/add-receptionest', [ReceptionestController::class,'add']);
 Route::post('/store-receptionest', [ReceptionestController::class,'store']);

@@ -17,12 +17,18 @@ class Ban
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::guard('receptionist')->user()->Ban_unBan == 'Ban'){
-            Auth::guard('receptionist')->logout();
-            return redirect()->route('receptionist.login.blade')
-                ->withErrors(['error' => 'You are banned']);
-        }else
-
-        return $next($request);
+        if(Auth::guard('receptionist')->check()) {
+            if (Auth::guard('receptionist')->user()->Ban_unBan == 'Ban') {
+                Auth::guard('receptionist')->logout();
+                return redirect()->route('receptionist.login.blade')
+                    ->withErrors(['error' => 'You are banned']);
+            }
+            else {
+                return $next($request);
+            }
+    }else{
+            return $next($request);
+        }
     }
+
 }

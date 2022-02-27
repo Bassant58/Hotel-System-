@@ -4,7 +4,7 @@
      <div class="row d-flex justify-content-center">
          <div class="col-8">
 
-             <form action="{{isset($receptionist)?'/save-receptionest/':'/store-receptionest'}}" method="post">
+             <form action="{{isset($receptionist)?'/save-receptionest/':'/store-receptionest'}}" method="post" enctype="multipart/form-data">
                  @csrf
                  <div class="row mt-5">
                      <div class="col-12 mb-3">
@@ -24,7 +24,7 @@
                      </div>
                      @if(!isset($receptionist))
                      <div class="col-12 mb-3">
-                         <input type="text" class="form-control" placeholder="Enter Password ...." name='password'
+                         <input type="password" class="form-control" placeholder="Enter Password ...." name='password'
                              value="{{ old('password') }}">
                          @error('password')
                          <div class="text-danger">{{ $message }}</div>
@@ -42,8 +42,8 @@
                      </div>
 
                      <div class="col-12 mb-3">
-                         <input type="text" class="form-control" placeholder="Avatar img" name='avatar'
-                             value="{{ $receptionist->avatar??old('avatar') }}">
+                         Upload Img :
+                         <input type="file" class="form-control" placeholder="Avatar img" name='recp_img'>
                      </div>
                      @endisset
 
